@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="370" viewBox="0 0 680 370" role="img" font-family="Helvetica, Arial, sans-serif">
+<title>Uçtan uca BER simülasyon sistemi</title><desc>Bit kaynağı, sembol eşleme, modülatör, AWGN kanal, demodülatör, karar, sembolden bite ve BER hesabı.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#444441" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<rect x="0" y="0" width="680" height="370" fill="#ffffff"/>
+<text x="25" y="36" font-size="12" font-weight="400" fill="#5F5E5A" text-anchor="start" dominant-baseline="central">Verici (TX)</text>
+<rect x="25" y="50" width="140" height="56" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.8"/>
+<text x="95.0" y="68.0" font-size="14" font-weight="500" fill="#3C3489" text-anchor="middle" dominant-baseline="central">Bit kaynağı</text>
+<text x="95.0" y="88.0" font-size="12" font-weight="400" fill="#534AB7" text-anchor="middle" dominant-baseline="central">randi, N bit</text>
+<rect x="185" y="50" width="140" height="56" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.8"/>
+<text x="255.0" y="68.0" font-size="14" font-weight="500" fill="#3C3489" text-anchor="middle" dominant-baseline="central">Sembol eşleme</text>
+<text x="255.0" y="88.0" font-size="12" font-weight="400" fill="#534AB7" text-anchor="middle" dominant-baseline="central">k bit → 1 sembol</text>
+<rect x="345" y="50" width="140" height="56" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.8"/>
+<text x="415.0" y="68.0" font-size="14" font-weight="500" fill="#3C3489" text-anchor="middle" dominant-baseline="central">Modülatör</text>
+<text x="415.0" y="88.0" font-size="12" font-weight="400" fill="#534AB7" text-anchor="middle" dominant-baseline="central">sembol → s[n]</text>
+<path d="M165 78 L183 78" fill="none" stroke="#444441" stroke-width="1.2" marker-end="url(#arrow)"/>
+<path d="M325 78 L343 78" fill="none" stroke="#444441" stroke-width="1.2" marker-end="url(#arrow)"/>
+<path d="M485 78 L575 78 L575 158" fill="none" stroke="#444441" stroke-width="1.2" marker-end="url(#arrow)"/>
+<rect x="345" y="160" width="140" height="56" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.8"/>
+<text x="415.0" y="178.0" font-size="14" font-weight="500" fill="#712B13" text-anchor="middle" dominant-baseline="central">Gürültü n</text>
+<text x="415.0" y="198.0" font-size="12" font-weight="400" fill="#993C1D" text-anchor="middle" dominant-baseline="central">N0 ← Eb/N0</text>
+<rect x="505" y="160" width="140" height="56" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.8"/>
+<text x="575.0" y="178.0" font-size="14" font-weight="500" fill="#712B13" text-anchor="middle" dominant-baseline="central">AWGN kanal</text>
+<text x="575.0" y="198.0" font-size="12" font-weight="400" fill="#993C1D" text-anchor="middle" dominant-baseline="central">r = s + n</text>
+<path d="M485 188 L503 188" fill="none" stroke="#444441" stroke-width="1.2" marker-end="url(#arrow)"/>
+<path d="M575 216 L575 268" fill="none" stroke="#444441" stroke-width="1.2" marker-end="url(#arrow)"/>
+<rect x="505" y="270" width="140" height="56" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.8"/>
+<text x="575.0" y="288.0" font-size="14" font-weight="500" fill="#085041" text-anchor="middle" dominant-baseline="central">Demodülatör</text>
+<text x="575.0" y="308.0" font-size="12" font-weight="400" fill="#0F6E56" text-anchor="middle" dominant-baseline="central">korelatör, I/Q</text>
+<rect x="345" y="270" width="140" height="56" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.8"/>
+<text x="415.0" y="288.0" font-size="14" font-weight="500" fill="#085041" text-anchor="middle" dominant-baseline="central">Karar</text>
+<text x="415.0" y="308.0" font-size="12" font-weight="400" fill="#0F6E56" text-anchor="middle" dominant-baseline="central">eşik, en yakın</text>
+<rect x="185" y="270" width="140" height="56" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.8"/>
+<text x="255.0" y="288.0" font-size="14" font-weight="500" fill="#085041" text-anchor="middle" dominant-baseline="central">Sembol → bit</text>
+<text x="255.0" y="308.0" font-size="12" font-weight="400" fill="#0F6E56" text-anchor="middle" dominant-baseline="central">Gray çözme</text>
+<rect x="25" y="270" width="140" height="56" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.8"/>
+<text x="95.0" y="288.0" font-size="14" font-weight="500" fill="#444441" text-anchor="middle" dominant-baseline="central">BER</text>
+<text x="95.0" y="308.0" font-size="12" font-weight="400" fill="#5F5E5A" text-anchor="middle" dominant-baseline="central">hata ÷ toplam</text>
+<path d="M505 298 L487 298" fill="none" stroke="#444441" stroke-width="1.2" marker-end="url(#arrow)"/>
+<path d="M345 298 L327 298" fill="none" stroke="#444441" stroke-width="1.2" marker-end="url(#arrow)"/>
+<path d="M185 298 L167 298" fill="none" stroke="#444441" stroke-width="1.2" marker-end="url(#arrow)"/>
+<path d="M95 106 L95 268" fill="none" stroke="#444441" stroke-width="1.2" stroke-dasharray="5 4" marker-end="url(#arrow)"/>
+<text x="105" y="188" font-size="12" font-weight="400" fill="#5F5E5A" text-anchor="start" dominant-baseline="central">gönderilen bitler (referans)</text>
+<text x="25" y="350" font-size="12" font-weight="400" fill="#5F5E5A" text-anchor="start" dominant-baseline="central">Alıcı (RX)</text>
+<text x="645" y="350" font-size="12" font-weight="400" fill="#5F5E5A" text-anchor="end" dominant-baseline="central">↻ her Eb/N0 için tekrar → BER eğrisi</text>
+</svg>
