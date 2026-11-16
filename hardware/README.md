@@ -129,6 +129,7 @@ Final report: 22 Dec · Presentation: 5 Jan.
 
 ## Open questions
 
+- **Board choice: 2× ESP32 (3.3 V) or 2× Arduino UNO R4 (5 V)?** The UNO R4 (Minima / WiFi) has a 12-bit DAC on A0, a 14-bit ADC, a 48 MHz Cortex-M4 and 32 kB SRAM, and runs at 5 V. Its 12-bit DAC gives much cleaner 16-QAM levels than the ESP32's 8-bit DAC. It has only one DAC, so noise would be added in software or with PWM + RC. On 5 V the same MCP6002 circuit works with VREF = 2.5 V (OPA2340 and LM358 also work at 5 V; TL072 still does not). A classic UNO R3 has no DAC and only 2 kB RAM, so it would only be the button/LED interface. **Do not mix 5 V outputs with ESP32 inputs** (3.3 V pins) without a divider or level shifter.
 - Do we use the clock wire, or try timing recovery from the preamble only?
 - Arduino IDE or ESP-IDF? (Arduino is faster to start; ESP-IDF gives better DAC/ADC DMA control.)
 
