@@ -199,7 +199,7 @@ fprintf('\nEb/N0 = %g dB,  Eb = %.3f,  N0 = %.4f\n\n', EbN0_dB, Eb, N0);
 fprintf(' bit | gönderilen |    z1    |    z2    |  d=z1-z2 | karar\n');
 fprintf('-----+------------+----------+----------+----------+------\n');
 for k = 1:Nbits
-    isaret = '';
+    isaret = ' ';   % boş bırakma: fprintf boş argümanı atlar, satır sonu kaybolur
     if bits_hat(k) ~= bits(k), isaret = '  <- HATA'; end
     fprintf(' %3d |     %d      | %8.3f | %8.3f | %8.3f |   %d%s\n', ...
         k, bits(k), z1(k), z2(k), d(k), bits_hat(k), isaret);
