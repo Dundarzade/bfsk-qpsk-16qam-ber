@@ -4,7 +4,7 @@ function bits = bfsk_demod(r, sps, mode)
 %   with the two tone references (-df/2 and +df/2) used by BFSK_MOD.
 %
 %   mode = 'noncoherent' (default): compare |z1| and |z0|. Needs no
-%          carrier phase, which is what we will have on the Pluto link.
+%          carrier phase, which is what we will have on the ESP32 link.
 %          Theory: Pb = 0.5*exp(-Eb/(2*N0)).
 %   mode = 'coherent': compare real(z1) and real(z0), assuming the
 %          receiver knows the phase. Theory: Pb = Q(sqrt(Eb/N0)).

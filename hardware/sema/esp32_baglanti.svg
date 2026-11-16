@@ -1,0 +1,192 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="700" viewBox="0 0 1000 700" role="img" font-family="Helvetica, Arial, sans-serif">
+<title>ESP32 modem breadboard bağlantı şeması</title><desc>Verici kartın GPIO25 DAC çıkışı 1 kΩ ve 47 nF RC filtreden, ardından 10 kΩ ile toplama düğümüne gider; GPIO26 gürültü DAC'ı ayrı bir 10 kΩ ile aynı düğüme bağlanır; düğüm 100 nF ile kuplajlanıp 2×100 kΩ bölücüyle 1.65 V'a oturtulur ve alıcı kartın GPIO34 ADC girişine gider. Butonlar ve LED'ler alt kısımda.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#444441" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<rect x="40" y="60" width="180" height="300" rx="10" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="130" y="80" font-size="15" font-weight="600" fill="#444441" text-anchor="middle" dominant-baseline="central">ESP32 A</text>
+<text x="130" y="100" font-size="12" font-weight="400" fill="#5F5E5A" text-anchor="middle" dominant-baseline="central">DevKit (WROOM-32)</text>
+<text x="212" y="140" font-size="12" font-weight="400" fill="#444441" text-anchor="end" dominant-baseline="central">GPIO25 · DAC1</text>
+<circle cx="220" cy="140" r="3.5" fill="#444441"/>
+<text x="212" y="200" font-size="12" font-weight="400" fill="#444441" text-anchor="end" dominant-baseline="central">GPIO26 · DAC2</text>
+<circle cx="220" cy="200" r="3.5" fill="#444441"/>
+<text x="212" y="260" font-size="12" font-weight="400" fill="#444441" text-anchor="end" dominant-baseline="central">GPIO18 · sembol saati</text>
+<circle cx="220" cy="260" r="3.5" fill="#444441"/>
+<text x="212" y="330" font-size="12" font-weight="400" fill="#444441" text-anchor="end" dominant-baseline="central">GND</text>
+<circle cx="220" cy="330" r="3.5" fill="#444441"/>
+<rect x="780" y="60" width="180" height="300" rx="10" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="870" y="80" font-size="15" font-weight="600" fill="#444441" text-anchor="middle" dominant-baseline="central">ESP32 B</text>
+<text x="870" y="100" font-size="12" font-weight="400" fill="#5F5E5A" text-anchor="middle" dominant-baseline="central">DevKit (WROOM-32)</text>
+<text x="788" y="170" font-size="12" font-weight="400" fill="#444441" text-anchor="start" dominant-baseline="central">GPIO34 · ADC1_CH6</text>
+<circle cx="780" cy="170" r="3.5" fill="#444441"/>
+<text x="788" y="260" font-size="12" font-weight="400" fill="#444441" text-anchor="start" dominant-baseline="central">GPIO19 · sembol saati</text>
+<circle cx="780" cy="260" r="3.5" fill="#444441"/>
+<text x="788" y="330" font-size="12" font-weight="400" fill="#444441" text-anchor="start" dominant-baseline="central">GND</text>
+<circle cx="780" cy="330" r="3.5" fill="#444441"/>
+<path d="M220 140 L260 140" fill="none" stroke="#534AB7" stroke-width="1.6" stroke-linejoin="round"/>
+<path d="M260 140 L265 140 L268 134 L274 146 L280 134 L286 146 L292 134 L295 140 L300 140" fill="none" stroke="#534AB7" stroke-width="1.4" stroke-linejoin="round"/>
+<text x="280" y="124" font-size="12" font-weight="400" fill="#444441" text-anchor="middle" dominant-baseline="central">R1 1 kΩ</text>
+<path d="M300 140 L340 140" fill="none" stroke="#534AB7" stroke-width="1.6" stroke-linejoin="round"/>
+<circle cx="340" cy="140" r="3.5" fill="#534AB7"/>
+<path d="M340 140 L340 154" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M330 154 L350 154" fill="none" stroke="#444441" stroke-width="2" stroke-linejoin="round"/>
+<path d="M330 160 L350 160" fill="none" stroke="#444441" stroke-width="2" stroke-linejoin="round"/>
+<path d="M340 160 L340 172" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M330 172 L350 172" fill="none" stroke="#444441" stroke-width="1.6" stroke-linejoin="round"/>
+<path d="M334 176 L346 176" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M338 180 L342 180" fill="none" stroke="#444441" stroke-width="1.2" stroke-linejoin="round"/>
+<text x="354" y="157" font-size="12" font-weight="400" fill="#444441" text-anchor="start" dominant-baseline="central">C1 47 nF</text>
+<path d="M340 140 L400 140" fill="none" stroke="#534AB7" stroke-width="1.6" stroke-linejoin="round"/>
+<path d="M400 140 L405 140 L408 134 L414 146 L420 134 L426 146 L432 134 L435 140 L440 140" fill="none" stroke="#534AB7" stroke-width="1.4" stroke-linejoin="round"/>
+<text x="420" y="124" font-size="12" font-weight="400" fill="#444441" text-anchor="middle" dominant-baseline="central">R2 10 kΩ</text>
+<path d="M440 140 L520 140 L520 170" fill="none" stroke="#534AB7" stroke-width="1.6" stroke-linejoin="round"/>
+<path d="M220 200 L400 200" fill="none" stroke="#993C1D" stroke-width="1.6" stroke-linejoin="round"/>
+<path d="M400 200 L405 200 L408 194 L414 206 L420 194 L426 206 L432 194 L435 200 L440 200" fill="none" stroke="#993C1D" stroke-width="1.4" stroke-linejoin="round"/>
+<text x="420" y="184" font-size="12" font-weight="400" fill="#444441" text-anchor="middle" dominant-baseline="central">R3 10 kΩ</text>
+<path d="M440 200 L480 200 L480 170 L520 170" fill="none" stroke="#993C1D" stroke-width="1.6" stroke-linejoin="round"/>
+<circle cx="520" cy="170" r="3.5" fill="#444441"/>
+<text x="522" y="120" font-size="12" font-weight="400" fill="#444441" text-anchor="middle" dominant-baseline="central">toplama düğümü</text>
+<path d="M520 170 L580 170" fill="none" stroke="#534AB7" stroke-width="1.6" stroke-linejoin="round"/>
+<path d="M580 158 L580 182" fill="none" stroke="#444441" stroke-width="2" stroke-linejoin="round"/>
+<path d="M588 158 L588 182" fill="none" stroke="#444441" stroke-width="2" stroke-linejoin="round"/>
+<text x="584" y="145" font-size="12" font-weight="400" fill="#444441" text-anchor="middle" dominant-baseline="central">C2 100 nF</text>
+<path d="M588 170 L680 170" fill="none" stroke="#534AB7" stroke-width="1.6" stroke-linejoin="round"/>
+<circle cx="680" cy="170" r="3.5" fill="#534AB7"/>
+<path d="M680 170 L780 170" fill="none" stroke="#534AB7" stroke-width="1.6" stroke-linejoin="round"/>
+<text x="680" y="100" font-size="12" font-weight="500" fill="#444441" text-anchor="middle" dominant-baseline="central">3V3 (B)</text>
+<path d="M670 110 L690 110" fill="none" stroke="#444441" stroke-width="1.6" stroke-linejoin="round"/>
+<path d="M680 110 L680 125" fill="none" stroke="#444441" stroke-width="1.2" stroke-linejoin="round"/>
+<path d="M680 125 L680 130 L674 133 L686 139 L674 145 L686 151 L674 157 L680 160 L680 165" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<text x="692" y="145" font-size="12" font-weight="400" fill="#444441" text-anchor="start" dominant-baseline="central">R5 100 kΩ</text>
+<path d="M680 165 L680 170" fill="none" stroke="#444441" stroke-width="1.2" stroke-linejoin="round"/>
+<path d="M680 175 L680 180 L674 183 L686 189 L674 195 L686 201 L674 207 L680 210 L680 215" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<text x="692" y="195" font-size="12" font-weight="400" fill="#444441" text-anchor="start" dominant-baseline="central">R4 100 kΩ</text>
+<path d="M680 170 L680 175" fill="none" stroke="#444441" stroke-width="1.2" stroke-linejoin="round"/>
+<path d="M680 215 L680 225" fill="none" stroke="#444441" stroke-width="1.2" stroke-linejoin="round"/>
+<path d="M670 225 L690 225" fill="none" stroke="#444441" stroke-width="1.6" stroke-linejoin="round"/>
+<path d="M674 229 L686 229" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M678 233 L682 233" fill="none" stroke="#444441" stroke-width="1.2" stroke-linejoin="round"/>
+<text x="730" y="290" font-size="12" font-weight="400" fill="#5F5E5A" text-anchor="middle" dominant-baseline="central">R4/R5 bölücü: ADC girişi 1.65 V etrafında</text>
+<path d="M220 260 L780 260" fill="none" stroke="#0F6E56" stroke-width="1.4" stroke-dasharray="5 4" stroke-linejoin="round"/>
+<text x="500" y="250" font-size="12" font-weight="400" fill="#0F6E56" text-anchor="middle" dominant-baseline="central">isteğe bağlı: sembol saati (QPSK / 16-QAM senkronu)</text>
+<path d="M220 330 L780 330" fill="none" stroke="#444441" stroke-width="2" stroke-linejoin="round"/>
+<text x="500" y="320" font-size="12" font-weight="500" fill="#444441" text-anchor="middle" dominant-baseline="central">ortak GND (zorunlu)</text>
+<rect x="260" y="380" width="480" height="60" rx="12" fill="none" stroke="#888780" stroke-width="1" stroke-dasharray="6 4"/>
+<text x="274" y="398" font-size="14" font-weight="500" fill="#5F5E5A" dominant-baseline="central"></text>
+<text x="500" y="398" font-size="12" font-weight="400" fill="#444441" text-anchor="middle" dominant-baseline="central">DAC: 128 ± 64 kod ≈ 0.8 – 2.5 V   →   ADC'de doğrusal bölge</text>
+<text x="500" y="420" font-size="12" font-weight="400" fill="#444441" text-anchor="middle" dominant-baseline="central">R2 = R3 olduğu için sinyal ve gürültü düğümde eşit ağırlıkla toplanır</text>
+<rect x="40" y="470" width="440" height="200" rx="12" fill="none" stroke="#888780" stroke-width="1" stroke-dasharray="6 4"/>
+<text x="54" y="488" font-size="14" font-weight="500" fill="#5F5E5A" dominant-baseline="central">Kullanıcı arayüzü (her iki kartta aynı)</text>
+<text x="80" y="510" font-size="12" font-weight="500" fill="#444441" text-anchor="middle" dominant-baseline="central">GPIO32</text>
+<path d="M80 520 L80 560" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M68 560 L92 556" fill="none" stroke="#444441" stroke-width="1.6" stroke-linejoin="round"/>
+<circle cx="68" cy="568" r="3.5" fill="#444441"/>
+<circle cx="92" cy="568" r="3.5" fill="#444441"/>
+<path d="M80 568 L80 568" fill="none" stroke="#444441" stroke-width="1" stroke-linejoin="round"/>
+<path d="M68 568 L68 590" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M58 590 L78 590" fill="none" stroke="#444441" stroke-width="1.6" stroke-linejoin="round"/>
+<path d="M62 594 L74 594" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M66 598 L70 598" fill="none" stroke="#444441" stroke-width="1.2" stroke-linejoin="round"/>
+<text x="80" y="620" font-size="12" font-weight="400" fill="#5F5E5A" text-anchor="middle" dominant-baseline="central">bit 0</text>
+<text x="160" y="510" font-size="12" font-weight="500" fill="#444441" text-anchor="middle" dominant-baseline="central">GPIO33</text>
+<path d="M160 520 L160 560" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M148 560 L172 556" fill="none" stroke="#444441" stroke-width="1.6" stroke-linejoin="round"/>
+<circle cx="148" cy="568" r="3.5" fill="#444441"/>
+<circle cx="172" cy="568" r="3.5" fill="#444441"/>
+<path d="M160 568 L160 568" fill="none" stroke="#444441" stroke-width="1" stroke-linejoin="round"/>
+<path d="M148 568 L148 590" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M138 590 L158 590" fill="none" stroke="#444441" stroke-width="1.6" stroke-linejoin="round"/>
+<path d="M142 594 L154 594" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M146 598 L150 598" fill="none" stroke="#444441" stroke-width="1.2" stroke-linejoin="round"/>
+<text x="160" y="620" font-size="12" font-weight="400" fill="#5F5E5A" text-anchor="middle" dominant-baseline="central">bit 1</text>
+<text x="240" y="510" font-size="12" font-weight="500" fill="#444441" text-anchor="middle" dominant-baseline="central">GPIO27</text>
+<path d="M240 520 L240 560" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M228 560 L252 556" fill="none" stroke="#444441" stroke-width="1.6" stroke-linejoin="round"/>
+<circle cx="228" cy="568" r="3.5" fill="#444441"/>
+<circle cx="252" cy="568" r="3.5" fill="#444441"/>
+<path d="M240 568 L240 568" fill="none" stroke="#444441" stroke-width="1" stroke-linejoin="round"/>
+<path d="M228 568 L228 590" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M218 590 L238 590" fill="none" stroke="#444441" stroke-width="1.6" stroke-linejoin="round"/>
+<path d="M222 594 L234 594" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M226 598 L230 598" fill="none" stroke="#444441" stroke-width="1.2" stroke-linejoin="round"/>
+<text x="240" y="620" font-size="12" font-weight="400" fill="#5F5E5A" text-anchor="middle" dominant-baseline="central">bit 2</text>
+<text x="320" y="510" font-size="12" font-weight="500" fill="#444441" text-anchor="middle" dominant-baseline="central">GPIO14</text>
+<path d="M320 520 L320 560" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M308 560 L332 556" fill="none" stroke="#444441" stroke-width="1.6" stroke-linejoin="round"/>
+<circle cx="308" cy="568" r="3.5" fill="#444441"/>
+<circle cx="332" cy="568" r="3.5" fill="#444441"/>
+<path d="M320 568 L320 568" fill="none" stroke="#444441" stroke-width="1" stroke-linejoin="round"/>
+<path d="M308 568 L308 590" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M298 590 L318 590" fill="none" stroke="#444441" stroke-width="1.6" stroke-linejoin="round"/>
+<path d="M302 594 L314 594" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M306 598 L310 598" fill="none" stroke="#444441" stroke-width="1.2" stroke-linejoin="round"/>
+<text x="320" y="620" font-size="12" font-weight="400" fill="#5F5E5A" text-anchor="middle" dominant-baseline="central">bit 3</text>
+<text x="400" y="510" font-size="12" font-weight="500" fill="#444441" text-anchor="middle" dominant-baseline="central">GPIO13</text>
+<path d="M400 520 L400 560" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M388 560 L412 556" fill="none" stroke="#444441" stroke-width="1.6" stroke-linejoin="round"/>
+<circle cx="388" cy="568" r="3.5" fill="#444441"/>
+<circle cx="412" cy="568" r="3.5" fill="#444441"/>
+<path d="M400 568 L400 568" fill="none" stroke="#444441" stroke-width="1" stroke-linejoin="round"/>
+<path d="M388 568 L388 590" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M378 590 L398 590" fill="none" stroke="#444441" stroke-width="1.6" stroke-linejoin="round"/>
+<path d="M382 594 L394 594" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M386 598 L390 598" fill="none" stroke="#444441" stroke-width="1.2" stroke-linejoin="round"/>
+<text x="400" y="620" font-size="12" font-weight="400" fill="#5F5E5A" text-anchor="middle" dominant-baseline="central">gönder / mod</text>
+<text x="260" y="650" font-size="12" font-weight="400" fill="#5F5E5A" text-anchor="middle" dominant-baseline="central">INPUT_PULLUP: basınca pin GND'ye çekilir, harici direnç yok</text>
+<rect x="520" y="470" width="440" height="200" rx="12" fill="none" stroke="#888780" stroke-width="1" stroke-dasharray="6 4"/>
+<text x="534" y="488" font-size="14" font-weight="500" fill="#5F5E5A" dominant-baseline="central">Çözülen bit LED'leri</text>
+<text x="560" y="510" font-size="12" font-weight="500" fill="#444441" text-anchor="middle" dominant-baseline="central">GPIO4</text>
+<path d="M560 520 L560 528" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M560 528 L560 533 L554 536 L566 542 L554 548 L566 554 L554 560 L560 563 L560 568" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M560 568 L560 572" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M552 572 L568 572 L560 586 Z" fill="#FAEEDA" stroke="#854F0B" stroke-width="1"/>
+<path d="M552 586 L568 586" fill="none" stroke="#444441" stroke-width="1.6" stroke-linejoin="round"/>
+<path d="M560 586 L560 596" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M550 596 L570 596" fill="none" stroke="#444441" stroke-width="1.6" stroke-linejoin="round"/>
+<path d="M554 600 L566 600" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M558 604 L562 604" fill="none" stroke="#444441" stroke-width="1.2" stroke-linejoin="round"/>
+<text x="560" y="620" font-size="12" font-weight="400" fill="#5F5E5A" text-anchor="middle" dominant-baseline="central">bit 0</text>
+<text x="640" y="510" font-size="12" font-weight="500" fill="#444441" text-anchor="middle" dominant-baseline="central">GPIO16</text>
+<path d="M640 520 L640 528" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M640 528 L640 533 L634 536 L646 542 L634 548 L646 554 L634 560 L640 563 L640 568" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M640 568 L640 572" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M632 572 L648 572 L640 586 Z" fill="#FAEEDA" stroke="#854F0B" stroke-width="1"/>
+<path d="M632 586 L648 586" fill="none" stroke="#444441" stroke-width="1.6" stroke-linejoin="round"/>
+<path d="M640 586 L640 596" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M630 596 L650 596" fill="none" stroke="#444441" stroke-width="1.6" stroke-linejoin="round"/>
+<path d="M634 600 L646 600" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M638 604 L642 604" fill="none" stroke="#444441" stroke-width="1.2" stroke-linejoin="round"/>
+<text x="640" y="620" font-size="12" font-weight="400" fill="#5F5E5A" text-anchor="middle" dominant-baseline="central">bit 1</text>
+<text x="720" y="510" font-size="12" font-weight="500" fill="#444441" text-anchor="middle" dominant-baseline="central">GPIO17</text>
+<path d="M720 520 L720 528" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M720 528 L720 533 L714 536 L726 542 L714 548 L726 554 L714 560 L720 563 L720 568" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M720 568 L720 572" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M712 572 L728 572 L720 586 Z" fill="#FAEEDA" stroke="#854F0B" stroke-width="1"/>
+<path d="M712 586 L728 586" fill="none" stroke="#444441" stroke-width="1.6" stroke-linejoin="round"/>
+<path d="M720 586 L720 596" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M710 596 L730 596" fill="none" stroke="#444441" stroke-width="1.6" stroke-linejoin="round"/>
+<path d="M714 600 L726 600" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M718 604 L722 604" fill="none" stroke="#444441" stroke-width="1.2" stroke-linejoin="round"/>
+<text x="720" y="620" font-size="12" font-weight="400" fill="#5F5E5A" text-anchor="middle" dominant-baseline="central">bit 2</text>
+<text x="800" y="510" font-size="12" font-weight="500" fill="#444441" text-anchor="middle" dominant-baseline="central">GPIO5</text>
+<path d="M800 520 L800 528" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M800 528 L800 533 L794 536 L806 542 L794 548 L806 554 L794 560 L800 563 L800 568" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M800 568 L800 572" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M792 572 L808 572 L800 586 Z" fill="#FAEEDA" stroke="#854F0B" stroke-width="1"/>
+<path d="M792 586 L808 586" fill="none" stroke="#444441" stroke-width="1.6" stroke-linejoin="round"/>
+<path d="M800 586 L800 596" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M790 596 L810 596" fill="none" stroke="#444441" stroke-width="1.6" stroke-linejoin="round"/>
+<path d="M794 600 L806 600" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M798 604 L802 604" fill="none" stroke="#444441" stroke-width="1.2" stroke-linejoin="round"/>
+<text x="800" y="620" font-size="12" font-weight="400" fill="#5F5E5A" text-anchor="middle" dominant-baseline="central">bit 3</text>
+<text x="880" y="510" font-size="12" font-weight="500" fill="#444441" text-anchor="middle" dominant-baseline="central">GPIO2</text>
+<path d="M880 520 L880 528" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M880 528 L880 533 L874 536 L886 542 L874 548 L886 554 L874 560 L880 563 L880 568" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M880 568 L880 572" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M872 572 L888 572 L880 586 Z" fill="#FAEEDA" stroke="#854F0B" stroke-width="1"/>
+<path d="M872 586 L888 586" fill="none" stroke="#444441" stroke-width="1.6" stroke-linejoin="round"/>
+<path d="M880 586 L880 596" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M870 596 L890 596" fill="none" stroke="#444441" stroke-width="1.6" stroke-linejoin="round"/>
+<path d="M874 600 L886 600" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M878 604 L882 604" fill="none" stroke="#444441" stroke-width="1.2" stroke-linejoin="round"/>
+<text x="880" y="620" font-size="12" font-weight="400" fill="#5F5E5A" text-anchor="middle" dominant-baseline="central">hata (dahili)</text>
+<text x="740" y="650" font-size="12" font-weight="400" fill="#5F5E5A" text-anchor="middle" dominant-baseline="central">her LED'e seri 330 Ω</text>
+</svg>
