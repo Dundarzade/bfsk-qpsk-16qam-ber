@@ -1,25 +1,18 @@
 # docs
 
-Project proposal, progress notes, final report and presentation.
+Project proposal, progress notes, final report and presentation, plus one folder per modulation scheme.
 
-## Theory notes
+## Folders
 
-Signal model, receiver equations, decision rule and BER formula for each scheme, linked to the functions in `src/`:
-
-- [theory/bfsk.md](theory/bfsk.md)
-- [theory/qpsk.md](theory/qpsk.md)
-- [theory/qam16.md](theory/qam16.md)
-
-## Figures
-
-Every figure is in `figures/` as `.svg` (for GitHub) and `.png` at 2× (for the report).
-
-| File | Shows |
+| Folder | Contents |
 |---|---|
-| `end_to_end_ber_system` | Whole simulation chain: bits → mapping → modulator → AWGN → demodulator → decision → bits → BER, repeated per Eb/N0 |
-| `constellations_gray` | Gray-coded QPSK and 16-QAM constellations |
-| `bfsk_correlation_receiver` | BFSK correlator receiver, decision on the sign of z₁ − z₂ |
-| `qpsk_system` | QPSK transmitter (I/Q mapping, cos / −sin carriers) and receiver (two correlators, sign decisions) |
-| `qam16_system` | 16-QAM transmitter (Gray 4-PAM per axis) and receiver (two correlators, 4-level slicers) |
+| [`genel/`](genel/) | Diagrams common to all schemes: end-to-end BER simulation chain, Gray-coded QPSK / 16-QAM constellations |
+| [`bfsk/`](bfsk/) | BFSK transmitter and correlator receiver diagrams, math (signal model → correlator → decision → BER) |
+| [`qpsk/`](qpsk/) | QPSK transmitter (I/Q mapping) and receiver (two correlators, sign decisions), math, full-system figure |
+| [`qam16/`](qam16/) | 16-QAM transmitter (Gray 4-PAM per axis) and receiver (4-level slicers), math, full-system figure |
 
-![End-to-end BER system](figures/end_to_end_ber_system.svg)
+Each scheme folder has a `README.md` that walks through the scheme step by step: transmitter → channel → receiver → decision → BER, with the matching `src/` functions. Every figure is stored as `.svg` (shown on GitHub) and `.png` at 2× (for the report).
+
+## Overview
+
+![End-to-end BER system](genel/end_to_end_ber_system.svg)
