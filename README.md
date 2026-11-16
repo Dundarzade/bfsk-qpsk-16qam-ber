@@ -2,7 +2,23 @@
 
 EE451 Communications term project (IYTE, Fall 2026).
 
-We implement BFSK, QPSK and 16-QAM modulators/demodulators in MATLAB, simulate bit error rate (BER) over an AWGN channel, compare it with theoretical curves, and present everything in a MATLAB GUI. The same schemes are then built in hardware as a wired modem between two ESP32 boards on a breadboard (DAC → wire → ADC), with measured BER.
+We implement BFSK, QPSK and 16-QAM modulators/demodulators in MATLAB, simulate bit error rate (BER) over an AWGN channel, compare it with theoretical curves, and present everything in a MATLAB GUI. A wired modem between two ESP32 boards (DAC → wire → ADC) is a hardware plan; this repository does not yet establish measured hardware BER.
+
+## 16-QAM deneyi
+
+Proje klasörünü MATLAB'de açıp `start_qam16` çalıştır. BFSK arayüzüyle aynı düzende üç gürültü seviyesini, I/Q kararlarını ve bit hatalarını karşılaştırır. Hazır modülasyon fonksiyonlarına ihtiyaç duymaz.
+
+```matlab
+start_qam16
+% Sayısal kontroller ve sonuçları yeniden üretmek için:
+addpath('src')
+test_qam16
+run_qam16_analysis
+```
+
+[16-QAM açıklaması](docs/qam16/README.md) · [Sunum ve hoca soruları](docs/qam16/sunum_notlari.md) · [Doğrulanmış sonuçlar](results/qam16/README.md)
+
+![16-QAM deney arayüzü](results/qam16/qam16_gui.png)
 
 ## How it works
 
@@ -32,7 +48,7 @@ Everything is written from first principles, so the Communications Toolbox is no
 |---|---|---|
 | Modulators and demodulators | `src/` | ✅ Done, sanity tests included |
 | BER over AWGN (simulation vs theory) | `src/`, `results/` | ✅ Done (Week 1) |
-| MATLAB GUI | `gui/` | ⬜ Not added yet |
+| MATLAB GUI | `gui/` | ✅ BFSK and 16-QAM experiments; QPSK GUI pending |
 | ESP32 breadboard modem | `hardware/` | 🟡 Plan, wiring diagrams and op-amp schematic added |
 | Report and presentation | `docs/` | 🟡 Proposal added |
 
@@ -44,7 +60,7 @@ Simulated BER matches theory for all four schemes. Eb/N0 needed for BER = 10⁻�
 |---|---|---|
 | QPSK | 6.8 dB | 2 |
 | BFSK (coherent) | 9.8 dB | 1 |
-| 16-QAM | 10.6 dB | 4 |
+| 16-QAM | 10.5224 dB (exact inversion) | 4 |
 | BFSK (noncoherent) | 11.0 dB | 1 |
 
 Plots: [`results/ber_awgn.png`](results/ber_awgn.png), [`results/constellations.png`](results/constellations.png). Details in [`results/README.md`](results/README.md).
@@ -65,7 +81,7 @@ run_ber_awgn       % writes ../results/ber_awgn.png, constellations.png, ber_awg
 | `gui/` | MATLAB App Designer GUI |
 | `hardware/` | ESP32 breadboard modem: plan, wiring diagrams, firmware |
 | `results/` | BER plots, constellations, saved data |
-| `docs/` | Proposal ([PDF](docs/EE451_P7_Proposal_Report.pdf)), report, presentation |
+| `docs/` | [Proposal PDF in upstream repository](https://github.com/halilyilmaz16/bfsk-qpsk-16qam-ber/blob/main/docs/EE451_P7_Proposal_Report.pdf), report, presentation |
 
 ## Requirements
 
@@ -75,5 +91,5 @@ run_ber_awgn       % writes ../results/ber_awgn.png, constellations.png, ber_awg
 ## Team
 
 - Halil Yilmaz
-- Emir Dündar
+- Emir Dündar ([@Dundarzade](https://github.com/Dundarzade)) — 16-QAM deney arayüzü ve BER analizi
 - Atlas Ferhan
