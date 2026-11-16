@@ -20,7 +20,24 @@ Why not WiFi / ESP-NOW: there the radio chip does the modulation, BFSK is not an
   <img alt="ESP32 breadboard wiring" src="sema/esp32_baglanti.svg">
 </picture>
 
-Only one direction (A → B) is drawn. B → A is the mirror copy: B's GPIO25 → (same RC + summing node) → A's GPIO34.
+Only one direction (A → B) is drawn. B → A is the mirror copy with a second MCP6002: B's GPIO25/26 → summer → A's GPIO34.
+
+## Channel circuit: op-amp summer
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="sema/esp32_opamp_dark.svg">
+  <img alt="MCP6002 inverting summer with 1.65 V reference" src="sema/esp32_opamp.svg">
+</picture>
+
+One MCP6002 (dual op-amp, 3.3 V supply) per direction:
+
+- **U1A, inverting summer:** adds the signal DAC (GPIO25) and the noise DAC (GPIO26) with gain −1 each. Rf ∥ Cf makes it a first-order low-pass at the same time, so no separate RC filter is needed.
+- **U1B, voltage follower:** buffers the 1.65 V reference from the R6/R7 divider, so the summer's + input sees a stiff mid-supply voltage.
+- Because the DACs idle at code 128 ≈ 1.65 V and the + input is also 1.65 V, the output sits at 1.65 V too. No coupling capacitor or extra bias divider is needed at the ADC.
+
+`VOUT − 1.65 V = −(s(t) + n(t))`, `fc = 1/(2π·Rf·Cf) ≈ 4.8 kHz`
+
+Op-amp choice and datasheet comparison: [`datasheets.md`](datasheets.md).
 
 ### Pin table (same on both boards)
 
@@ -36,14 +53,18 @@ Only one direction (A → B) is drawn. B → A is the mirror copy: B's GPIO25 �
 | GPIO2 | Onboard LED: bit error | |
 | GND | Common ground | **Required** between the boards |
 
-### Part values
+### Part values (per direction)
 
 | Part | Value | Why |
 |---|---|---|
-| R1, C1 | 1 kΩ, 47 nF | Low-pass, fc = 1/(2πRC) ≈ 3.4 kHz: smooths DAC steps, passes the 1–2 kHz tones |
-| R2, R3 | 10 kΩ, 10 kΩ | Passive summer: signal + noise with equal weight |
-| C2 | 100 nF | AC coupling into the receiver |
-| R4, R5 | 100 kΩ, 100 kΩ | Bias the ADC input at 1.65 V (middle of its linear range) |
+| U1 | MCP6002 (DIP-8) | Rail-to-rail in/out from 1.8 V, so it works on 3.3 V; breadboard-friendly package |
+| R2, R3 | 10 kΩ, 10 kΩ | Summer inputs: signal and noise with equal weight |
+| Rf, Cf | 10 kΩ, 3.3 nF | Gain −1, low-pass fc ≈ 4.8 kHz: passes the 1 and 2 kHz tones, smooths the 8 kHz DAC steps |
+| R6, R7, C3 | 10 kΩ, 10 kΩ, 1 µF | 1.65 V reference, filtered |
+| R8 | 100 Ω | Series resistor into the ADC pin (protection, isolates the ADC's sampling capacitor) |
+| C4 | 100 nF | Supply decoupling, close to pins 8 and 4 |
+
+Keep the signal + noise peak below about ±1.2 V around 1.65 V, so neither the op-amp output nor the ADC goes near its rails.
 
 ## Signal parameters (first guess)
 
@@ -53,7 +74,7 @@ Only one direction (A → B) is drawn. B → A is the mirror copy: B's GPIO25 �
 | Symbol rate | 250 baud → 32 samples per symbol, Ts = 4 ms |
 | Carrier fc | 1 kHz (QPSK, 16-QAM) |
 | BFSK tones | 1 kHz and 2 kHz (spacing 1 kHz = 4/Ts, so they are orthogonal over a symbol) |
-| DAC level | 128 ± 64 codes ≈ 0.8–2.5 V, keeping clear of the nonlinear ADC ends |
+| DAC level | 128 ± 48 codes ≈ ±0.6 V around 1.65 V for the signal, leaving room for noise |
 | Bit rate | BFSK 250 bit/s · QPSK 500 bit/s · 16-QAM 1000 bit/s |
 
 Memory is not an issue: the ESP32 has 520 KB SRAM; a 256-entry sine table plus a few KB of sample buffer is all the modem needs.
@@ -97,15 +118,17 @@ Final report: 22 Dec · Presentation: 5 Jan.
 | 2 | Breadboard (830 points) |
 | 10 | Tactile push button |
 | 10 | LED + 330 Ω |
-| 4 + 4 | 1 kΩ, 10 kΩ |
-| 4 | 100 kΩ |
-| 2 + 2 | 47 nF, 100 nF |
+| 2 (+1 spare) | MCP6002-I/P (DIP-8), one per direction |
+| 2 | DIP-8 socket (optional) |
+| 15 | 10 kΩ |
+| 2 | 100 Ω |
+| 2 | 3.3 nF |
+| 2 + 2 | 1 µF, 100 nF |
 | 1 set | Male–male jumper wires |
 | 2 | USB data cables |
 
 ## Open questions
 
-- Is a passive summer enough, or do we add an op-amp buffer (e.g. MCP6002) after the RC filter?
 - Do we use the clock wire, or try timing recovery from the preamble only?
 - Arduino IDE or ESP-IDF? (Arduino is faster to start; ESP-IDF gives better DAC/ADC DMA control.)
 
@@ -113,5 +136,6 @@ Final report: 22 Dec · Presentation: 5 Jan.
 
 | Path | Contents |
 |---|---|
-| `sema/` | Block diagram and breadboard wiring (`.svg` + `_dark.svg`), and `sema_uret.py`, which regenerates them |
+| `sema/` | Block diagram, breadboard wiring and op-amp schematic (`.svg` + `_dark.svg`), and `sema_uret.py`, which regenerates them |
+| `datasheets.md` | Op-amp comparison and datasheet links |
 | `firmware/` | ESP32 code (to be added) |

@@ -124,16 +124,13 @@ def system(C):
     s.box(110, 320, 150, 30, "DAC1 (GPIO25)", None, "t")
     # Channel
     s.frame(370, 30, 240, 330, "Kanal  (breadboard)")
-    s.arrow([(260, 335), (380, 335), (380, 110), (398, 110)])
-    s.box(400, 80, 190, 56, "RC alçak geçiren", "1 kΩ · 47 nF  (fc ≈ 3.4 kHz)", "g")
-    s.arrow([(495, 136), (495, 200)])
-    s.box(400, 270, 190, 56, "Gürültü kaynağı", "DAC2 (GPIO26), Eb/N0 ayarı", "c")
-    s.o.append(f'<circle cx="495" cy="220" r="18" fill="{C["c_fill"]}" stroke="{C["c_st"]}" stroke-width="0.8"/>')
-    s.text(495, 220, "+", 18, "middle", C["c_tx"], 500)
-    s.arrow([(495, 270), (495, 240)])
+    s.arrow([(260, 335), (380, 335), (380, 190), (398, 190)])
+    s.box(400, 150, 190, 80, "MCP6002 toplayıcı", "sinyal + gürültü, kazanç −1", "g", "fc ≈ 4.8 kHz, çıkış 1.65 V ± …")
+    s.box(400, 280, 190, 56, "Gürültü kaynağı", "DAC2 (GPIO26), Eb/N0 ayarı", "c")
+    s.arrow([(495, 280), (495, 232)])
     # Node B
     s.frame(630, 30, 330, 330, "ESP32 B  (alıcı)")
-    s.arrow([(513, 220), (660, 220), (660, 82), (668, 82)])
+    s.arrow([(590, 190), (650, 190), (650, 82), (668, 82)])
     s.box(670, 66, 150, 30, "ADC1_CH6 (GPIO34)", None, "t")
     s.arrow([(795, 96), (795, 118)])
     s.box(670, 120, 250, 56, "Örnekleme (fs = 8 kHz, DMA)", "12 bit, DC ofset çıkarılır", "p")
@@ -175,41 +172,18 @@ def wiring(C):
     s.text(870, 100, "DevKit (WROOM-32)", 12, "middle")
     for y, n in [(170, "GPIO34 · ADC1_CH6"), (260, "GPIO19 · sembol saati"), (330, "GND")]:
         s.pin(780, y, n, "l")
-    # signal path
-    s.wire([(220, 140), (260, 140)], sig)
-    s.resistor(260, 140, True, "R1 1 kΩ", sig)
-    s.wire([(300, 140), (340, 140)], sig)
-    s.dot(340, 140, sig)
-    s.cap_to_gnd(340, 140, "C1 47 nF")
-    s.wire([(340, 140), (400, 140)], sig)
-    s.resistor(400, 140, True, "R2 10 kΩ", sig)
-    s.wire([(440, 140), (520, 140), (520, 170)], sig)
-    # noise path
-    s.wire([(220, 200), (400, 200)], nz)
-    s.resistor(400, 200, True, "R3 10 kΩ", nz)
-    s.wire([(440, 200), (480, 200), (480, 170), (520, 170)], nz)
-    s.dot(520, 170, C["text"])
-    s.text(522, 120, "toplama düğümü", 12, "middle", C["text"])
-    # coupling + bias
-    s.wire([(520, 170), (580, 170)], sig)
     c = C["line"]
-    s.wire([(580, 158), (580, 182)], c, 2)
-    s.wire([(588, 158), (588, 182)], c, 2)
-    s.text(584, 145, "C2 100 nF", 12, "middle", C["text"])
-    s.wire([(588, 170), (680, 170)], sig)
-    s.dot(680, 170, sig)
-    s.wire([(680, 170), (780, 170)], sig)
-    # bias divider
-    s.text(680, 100, "3V3 (B)", 12, "middle", C["text"], 500)
-    s.wire([(670, 110), (690, 110)], c, 1.6)
-    s.wire([(680, 110), (680, 125)], c, 1.2)
-    s.resistor(680, 125, False, "R5 100 kΩ", c)
-    s.wire([(680, 165), (680, 170)], c, 1.2)
-    s.resistor(680, 175, False, "R4 100 kΩ", c)
-    s.wire([(680, 170), (680, 175)], c, 1.2)
-    s.wire([(680, 215), (680, 225)], c, 1.2)
-    s.gnd(680, 225)
-    s.text(730, 290, "R4/R5 bölücü: ADC girişi 1.65 V etrafında", 12, "middle")
+    # op-amp block
+    s.box(380, 115, 240, 110, "U1: MCP6002 toplayıcı", "eviren toplayıcı + alçak geçiren", "p", "ayrıntı: esp32_opamp.svg")
+    s.wire([(220, 140), (380, 140)], sig)
+    s.text(300, 130, "sinyal", 12, "middle", C["p_st"])
+    s.wire([(220, 200), (380, 200)], nz)
+    s.text(300, 190, "gürültü", 12, "middle", C["c_st"])
+    s.wire([(620, 170), (680, 170)], sig)
+    s.resistor(680, 170, True, "R8 100 Ω", sig)
+    s.wire([(720, 170), (780, 170)], sig)
+    s.text(500, 100, "3V3 ve GND: ESP32 A'dan", 12, "middle")
+    s.text(700, 290, "çıkış 1.65 V etrafında, doğrudan ADC'ye", 12, "middle")
     # clock
     s.wire([(220, 260), (780, 260)], clk, 1.4, True)
     s.text(500, 250, "isteğe bağlı: sembol saati (QPSK / 16-QAM senkronu)", 12, "middle", C["t_st"])
@@ -218,8 +192,8 @@ def wiring(C):
     s.text(500, 320, "ortak GND (zorunlu)", 12, "middle", C["text"], 500)
     # notes on levels
     s.frame(260, 380, 480, 60, "")
-    s.text(500, 398, "DAC: 128 ± 64 kod ≈ 0.8 – 2.5 V   →   ADC'de doğrusal bölge", 12, "middle", C["text"])
-    s.text(500, 420, "R2 = R3 olduğu için sinyal ve gürültü düğümde eşit ağırlıkla toplanır", 12, "middle", C["text"])
+    s.text(500, 398, "DAC orta noktası 128 kod ≈ 1.65 V; sinyal + gürültü tepesi ±1.2 V'u geçmesin", 12, "middle", C["text"])
+    s.text(500, 420, "U1 için 100 nF dekuplaj kondansatörü VDD–GND arasına, entegreye yakın", 12, "middle", C["text"])
     # buttons
     s.frame(40, 470, 440, 200, "Kullanıcı arayüzü (her iki kartta aynı)")
     xs = [80, 160, 240, 320, 400]
@@ -254,8 +228,98 @@ def wiring(C):
     return s
 
 
+# ---------------------------------------------------------------- 3. op-amp
+def opamp_tri(s, x, y, label):
+    """Op-amp triangle; (x,y) = left edge centre, 100 wide, 100 tall. - input top."""
+    C = s.C
+    s.o.append(f'<path d="M{x} {y-50} L{x} {y+50} L{x+100} {y} Z" fill="{C["p_fill"]}" stroke="{C["p_st"]}" stroke-width="1.2"/>')
+    s.text(x + 10, y - 25, "−", 16, "start", C["p_tx"], 600)
+    s.text(x + 10, y + 25, "+", 16, "start", C["p_tx"], 600)
+    s.text(x + 40, y, label, 12, "middle", C["p_tx"], 500)
+
+
+def opamp(C):
+    s = S(1000, 720, "MCP6002 ile eviren toplayıcı ve 1.65 V referans",
+          "U1A eviren toplayıcıdır: GPIO25 sinyal DAC'ı ve GPIO26 gürültü DAC'ı 10 kΩ dirençlerle eviren girişe bağlanır, geri besleme 10 kΩ paralel 3.3 nF'tır; artı giriş U1B tamponundan gelen 1.65 V referanstır. Çıkış 100 Ω üzerinden alıcı ESP32'nin GPIO34 girişine gider.", C)
+    sig, nz, c = C["wire_sig"], C["wire_noise"], C["line"]
+    # inputs
+    s.text(40, 170, "ESP32 A · GPIO25 (DAC1)", 13, "start", C["text"], 500)
+    s.text(40, 250, "ESP32 A · GPIO26 (DAC2)", 13, "start", C["text"], 500)
+    s.wire([(60, 185), (60, 200), (260, 200)], sig)
+    s.resistor(260, 200, True, "R2 10 kΩ", sig)
+    s.wire([(60, 265), (60, 280), (260, 280)], nz)
+    s.resistor(260, 280, True, "R3 10 kΩ", nz)
+    s.wire([(300, 200), (380, 200)], sig)
+    s.wire([(300, 280), (340, 280), (340, 200)], nz)
+    s.dot(340, 200, C["text"]); s.dot(380, 200, C["text"])
+    s.text(300, 160, "Σ düğümü (sanal toprak = 1.65 V)", 11, "middle")
+    # feedback
+    s.wire([(380, 200), (380, 120)], c, 1.4)
+    s.wire([(380, 120), (460, 120)], c, 1.4)
+    s.resistor(460, 120, True, "Rf 10 kΩ", c)
+    s.wire([(500, 120), (580, 120)], c, 1.4)
+    s.wire([(380, 120), (380, 70), (500, 70)], c, 1.4)
+    s.wire([(500, 58), (500, 82)], c, 2); s.wire([(508, 58), (508, 82)], c, 2)
+    s.text(504, 45, "Cf 3.3 nF", 12, "middle", C["text"])
+    s.wire([(508, 70), (580, 70), (580, 120)], c, 1.4)
+    s.dot(380, 120, c); s.dot(580, 120, c)
+    s.wire([(580, 120), (580, 225)], c, 1.4)
+    # U1A
+    s.wire([(380, 200), (420, 200)], sig)
+    opamp_tri(s, 420, 225, "U1A")
+    s.wire([(420, 250), (400, 250), (400, 330)], c, 1.4)
+    s.text(392, 340, "+ giriş ← VREF", 11, "end")
+    s.dot(520, 225, c)
+    s.wire([(520, 225), (580, 225)], sig)
+    s.dot(580, 225, sig)
+    s.wire([(580, 225), (660, 225)], sig)
+    s.resistor(660, 225, True, "R8 100 Ω", sig)
+    s.wire([(700, 225), (780, 225)], sig)
+    s.text(790, 218, "→ ESP32 B · GPIO34", 13, "start", C["text"], 500)
+    s.text(790, 238, "(ADC1_CH6)", 12, "start")
+    s.text(640, 255, "VOUT", 12, "middle", C["p_st"], 500)
+    # VREF: divider + U1B follower
+    s.text(130, 380, "3V3", 12, "middle", C["text"], 500)
+    s.wire([(120, 390), (140, 390)], c, 1.6)
+    s.wire([(130, 390), (130, 400)], c, 1.2)
+    s.resistor(130, 400, False, "R6 10 kΩ", c)
+    s.wire([(130, 440), (130, 450)], c, 1.2)
+    s.dot(130, 450, c)
+    s.resistor(130, 455, False, "R7 10 kΩ", c)
+    s.wire([(130, 450), (130, 455)], c, 1.2)
+    s.wire([(130, 495), (130, 505)], c, 1.2); s.gnd(130, 505)
+    s.wire([(130, 450), (230, 450)], c, 1.2)
+    s.dot(230, 450, c)
+    s.cap_to_gnd(230, 450, "C3 1 µF")
+    s.wire([(230, 450), (300, 450), (300, 480), (340, 480)], c, 1.2)
+    opamp_tri(s, 340, 455, "U1B")
+    s.wire([(440, 455), (470, 455)], c, 1.4)
+    s.dot(470, 455, c)
+    s.wire([(470, 455), (470, 390), (320, 390), (320, 430), (340, 430)], c, 1.4)
+    s.text(395, 380, "gerilim izleyici (kazanç 1)", 11, "middle")
+    s.wire([(470, 455), (520, 455), (520, 330), (400, 330)], c, 1.4)
+    s.text(530, 455, "VREF = 1.65 V", 12, "start", C["text"], 500)
+    # supply / decoupling
+    s.frame(640, 300, 330, 210, "Besleme ve pinler (MCP6002, DIP-8)")
+    pins = [("1 OUTA", "8 VDD (3V3)"), ("2 INA−", "7 OUTB"), ("3 INA+", "6 INB−"), ("4 VSS (GND)", "5 INB+")]
+    s.o.append(f'<rect x="740" y="335" width="130" height="110" rx="6" fill="{C["g_fill"]}" stroke="{C["g_st"]}" stroke-width="1"/>')
+    s.text(805, 350, "MCP6002", 12, "middle", C["text"], 600)
+    for i, (l, r) in enumerate(pins):
+        y = 370 + i * 20
+        s.text(735, y, l, 11, "end", C["text"]); s.text(875, y, r, 11, "start", C["text"])
+    s.text(805, 470, "VDD–VSS arasına 100 nF, pinlere yakın", 12, "middle")
+    s.text(805, 490, "3V3 ve GND: ESP32 A'dan", 12, "middle")
+    # equations
+    s.frame(30, 540, 940, 160, "Denklemler")
+    s.text(50, 585, "VOUT = VREF − (Rf/R2)·(V_DAC1 − VREF) − (Rf/R3)·(V_DAC2 − VREF)     →  Rf = R2 = R3 olduğundan: VOUT − 1.65 = −(s(t) + n(t))", 13, "start", C["text"])
+    s.text(50, 613, "fc = 1 / (2π·Rf·Cf) = 1 / (2π · 10 kΩ · 3.3 nF) ≈ 4.8 kHz   →   1 kHz ve 2 kHz tonları geçer, 8 kHz DAC basamakları yumuşar", 13, "start", C["text"])
+    s.text(50, 641, "Eviren yapı sinyali 180° çevirir: BFSK'da önemsiz, QPSK / 16-QAM'de preamble ile ölçülen faza zaten dahil olur", 13, "start", C["text"])
+    s.text(50, 669, "DAC'lar 128 kodda (≈1.65 V) dururken VOUT = 1.65 V: kuplaj kondansatörü ve ofset bölücüsü gerekmez", 13, "start", C["text"])
+    return s
+
+
 os.makedirs(OUT, exist_ok=True)
-for name, fn in [("esp32_sistem", system), ("esp32_baglanti", wiring)]:
+for name, fn in [("esp32_sistem", system), ("esp32_baglanti", wiring), ("esp32_opamp", opamp)]:
     fn(LIGHT).save(os.path.join(OUT, f"{name}.svg"))
     fn(DARK).save(os.path.join(OUT, f"{name}_dark.svg"))
 print("ok")

@@ -33,7 +33,7 @@ Everything is written from first principles, so the Communications Toolbox is no
 | Modulators and demodulators | `src/` | ✅ Done, sanity tests included |
 | BER over AWGN (simulation vs theory) | `src/`, `results/` | ✅ Done (Week 1) |
 | MATLAB GUI | `gui/` | ⬜ Not added yet |
-| ESP32 breadboard modem | `hardware/` | 🟡 Plan and wiring diagrams added |
+| ESP32 breadboard modem | `hardware/` | 🟡 Plan, wiring diagrams and op-amp schematic added |
 | Report and presentation | `docs/` | 🟡 Proposal added |
 
 ## Results
