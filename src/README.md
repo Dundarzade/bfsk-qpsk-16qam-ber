@@ -1,5 +1,9 @@
 # src
 
+## 16-QAM gerçek taşıyıcılı deney
+
+`qam16_experiment.m`, mevcut `qam16_mod`/`qam16_demod` ile gerçek cos/−sin dalgasını üretir, AWGN ekler ve iki korelatörle çözer. `test_qam16` eşleme, enerji, gürültü varyansı, teorik BER ve örnekleme hızından bağımsızlığı kontrol eder. `run_qam16_analysis`, 0:2:14 dB sonuçlarını `../results/qam16/` altında CSV/MAT/PNG olarak üretir. Proje kökünden `start_qam16` etkileşimli arayüzü açar.
+
 MATLAB core functions (WP2 mod/demod + WP3 AWGN BER). Written from first principles: no Communications Toolbox functions are needed to run them (the toolbox is only used, if present, to cross-check the theory in `test_mod_demod.m`).
 
 | File | What it does |
