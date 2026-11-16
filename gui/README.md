@@ -1,12 +1,34 @@
 # gui
 
+## `qam16_gui.m` – 16-QAM BER deneyi
+
+Proje kökünde `start_qam16` çalıştır veya bu klasörde `qam16_gui` yaz. `../src/` içindeki ortak modülatör, alıcı, teori ve gerçek taşıyıcılı deney fonksiyonlarını kullanır; klasör yapısını koru.
+
+- 40 000 bit, üç Eb/N0 seviyesi: 0, 6 ve 12 dB. Bit sayısı 4'ün katı olmalı.
+- BER teorisi ve ölçüm; alınan semboller ve Gray karar eşikleri; BER/SER tablosu; ilk 200 bitin hata şeridi.
+- İkinci sekme: I/Q seviye dağılımları, ilk dört sembolün verici ve kanal dalgası.
+- Her dB'de aynı bitler ve ortak standart gürültü örnekleri kullanılır. Tohumu değiştirerek farklı deney yapabilirsin.
+- Sıfır hata durumunda kesin BER=0 iddiası yapılmaz; bağımsız semboller üzerinden hesaplanan temkinli %95 üst sınır gösterilir.
+
+Varsayılan sinyal: Ts=1 s, fs=100 Hz, fc=4 Hz. Bu, ideal senkronlu bir simülasyondur. `fs*Ts` 8–100 000 arasında tam sayı, `fc*Ts` pozitif tam sayı ve `fs>2*fc` olmalı. Bellek bloklarla sınırlanır; arayüz işlem süresi için toplam örnek sayısını 20 milyonla sınırlar.
+
+[Teknik anlatım ve çalıştırma](../docs/qam16/README.md) · [Sonuç grafikleri](../results/qam16/README.md)
+
+```matlab
+% Tekrarlanabilir otomatik deney ve ekran çıktısı:
+f = qam16_gui(struct('Visible','off','AutoRun',true, ...
+    'ExportDir',fullfile(pwd,'..','results','qam16')));
+data = getappdata(f,'QAM16Results');
+close(f)
+```
+
 ## `ber_gui.m` – BFSK BER deneyi
 
 ```matlab
 >> ber_gui
 ```
 
-Tek dosyadan oluşuyor, başka hiçbir dosyaya ihtiyaç duymuyor. İstediğin klasöre koyup çalıştırabilirsin. Bu hafta sadece BFSK var. QPSK ve 16-QAM sonradan eklenecek.
+Bu dosya tek başına BFSK çalıştırır; başka dosyaya ihtiyaç duymaz. 16-QAM için yukarıdaki `qam16_gui.m`, QPSK için adım adım script kullanılabilir.
 
 1. **Kaç bit gönderilsin?** Örneğin 1000 (en fazla 100 000).
 2. **3 adet Eb/N0 (dB)**: Gürültü seviyesi. Büyük dB = az gürültü. Varsayılanlar 0, 4, 8.
