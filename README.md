@@ -2,7 +2,7 @@
 
 EE451 Communications term project (IYTE, Fall 2026).
 
-We implement BFSK, QPSK and 16-QAM modulators/demodulators in MATLAB, simulate bit error rate (BER) over an AWGN channel, compare it with theoretical curves, and present everything in a MATLAB GUI. The same waveforms are then tested over the air with ADALM-Pluto SDRs.
+We implement BFSK, QPSK and 16-QAM modulators/demodulators in MATLAB, simulate bit error rate (BER) over an AWGN channel, compare it with theoretical curves, and present everything in a MATLAB GUI. The same schemes are then built in hardware as a wired modem between two ESP32 boards on a breadboard (DAC → wire → ADC), with measured BER.
 
 ## How it works
 
@@ -33,7 +33,7 @@ Everything is written from first principles, so the Communications Toolbox is no
 | Modulators and demodulators | `src/` | ✅ Done, sanity tests included |
 | BER over AWGN (simulation vs theory) | `src/`, `results/` | ✅ Done (Week 1) |
 | MATLAB GUI | `gui/` | ⬜ Not added yet |
-| ADALM-Pluto over-the-air tests | `pluto/` | ⬜ Not added yet |
+| ESP32 breadboard modem | `hardware/` | 🟡 Plan, wiring diagrams and op-amp schematic added |
 | Report and presentation | `docs/` | 🟡 Proposal added |
 
 ## Results
@@ -63,14 +63,14 @@ run_ber_awgn       % writes ../results/ber_awgn.png, constellations.png, ber_awg
 |---|---|
 | `src/` | Modulation/demodulation functions, AWGN channel, BER simulation and theory |
 | `gui/` | MATLAB App Designer GUI |
-| `pluto/` | ADALM-Pluto SDR transmit/receive scripts |
+| `hardware/` | ESP32 breadboard modem: plan, wiring diagrams, firmware |
 | `results/` | BER plots, constellations, saved data |
 | `docs/` | Proposal ([PDF](docs/EE451_P7_Proposal_Report.pdf)), report, presentation |
 
 ## Requirements
 
 - MATLAB (core code in `src/` runs without toolboxes)
-- Communications Toolbox Support Package for ADALM-PLUTO Radio (hardware part only)
+- Hardware part: two ESP32 DevKit (WROOM-32) boards, breadboard parts listed in [`hardware/README.md`](hardware/README.md)
 
 ## Team
 

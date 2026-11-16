@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="720" viewBox="0 0 1000 720" role="img" font-family="Helvetica, Arial, sans-serif">
+<title>MCP6002 ile eviren toplayıcı ve 1.65 V referans</title><desc>U1A eviren toplayıcıdır: GPIO25 sinyal DAC'ı ve GPIO26 gürültü DAC'ı 10 kΩ dirençlerle eviren girişe bağlanır, geri besleme 10 kΩ paralel 3.3 nF'tır; artı giriş U1B tamponundan gelen 1.65 V referanstır. Çıkış 100 Ω üzerinden alıcı ESP32'nin GPIO34 girişine gider.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#444441" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<text x="40" y="170" font-size="13" font-weight="500" fill="#444441" text-anchor="start" dominant-baseline="central">ESP32 A · GPIO25 (DAC1)</text>
+<text x="40" y="250" font-size="13" font-weight="500" fill="#444441" text-anchor="start" dominant-baseline="central">ESP32 A · GPIO26 (DAC2)</text>
+<path d="M60 185 L60 200 L260 200" fill="none" stroke="#534AB7" stroke-width="1.6" stroke-linejoin="round"/>
+<path d="M260 200 L265 200 L268 194 L274 206 L280 194 L286 206 L292 194 L295 200 L300 200" fill="none" stroke="#534AB7" stroke-width="1.4" stroke-linejoin="round"/>
+<text x="280" y="184" font-size="12" font-weight="400" fill="#444441" text-anchor="middle" dominant-baseline="central">R2 10 kΩ</text>
+<path d="M60 265 L60 280 L260 280" fill="none" stroke="#993C1D" stroke-width="1.6" stroke-linejoin="round"/>
+<path d="M260 280 L265 280 L268 274 L274 286 L280 274 L286 286 L292 274 L295 280 L300 280" fill="none" stroke="#993C1D" stroke-width="1.4" stroke-linejoin="round"/>
+<text x="280" y="264" font-size="12" font-weight="400" fill="#444441" text-anchor="middle" dominant-baseline="central">R3 10 kΩ</text>
+<path d="M300 200 L380 200" fill="none" stroke="#534AB7" stroke-width="1.6" stroke-linejoin="round"/>
+<path d="M300 280 L340 280 L340 200" fill="none" stroke="#993C1D" stroke-width="1.6" stroke-linejoin="round"/>
+<circle cx="340" cy="200" r="3.5" fill="#444441"/>
+<circle cx="380" cy="200" r="3.5" fill="#444441"/>
+<text x="300" y="160" font-size="11" font-weight="400" fill="#5F5E5A" text-anchor="middle" dominant-baseline="central">Σ düğümü (sanal toprak = 1.65 V)</text>
+<path d="M380 200 L380 120" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M380 120 L460 120" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M460 120 L465 120 L468 114 L474 126 L480 114 L486 126 L492 114 L495 120 L500 120" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<text x="480" y="104" font-size="12" font-weight="400" fill="#444441" text-anchor="middle" dominant-baseline="central">Rf 10 kΩ</text>
+<path d="M500 120 L580 120" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M380 120 L380 70 L500 70" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M500 58 L500 82" fill="none" stroke="#444441" stroke-width="2" stroke-linejoin="round"/>
+<path d="M508 58 L508 82" fill="none" stroke="#444441" stroke-width="2" stroke-linejoin="round"/>
+<text x="504" y="45" font-size="12" font-weight="400" fill="#444441" text-anchor="middle" dominant-baseline="central">Cf 3.3 nF</text>
+<path d="M508 70 L580 70 L580 120" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<circle cx="380" cy="120" r="3.5" fill="#444441"/>
+<circle cx="580" cy="120" r="3.5" fill="#444441"/>
+<path d="M580 120 L580 225" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M380 200 L420 200" fill="none" stroke="#534AB7" stroke-width="1.6" stroke-linejoin="round"/>
+<path d="M420 175 L420 275 L520 225 Z" fill="#EEEDFE" stroke="#534AB7" stroke-width="1.2"/>
+<text x="430" y="200" font-size="16" font-weight="600" fill="#3C3489" text-anchor="start" dominant-baseline="central">−</text>
+<text x="430" y="250" font-size="16" font-weight="600" fill="#3C3489" text-anchor="start" dominant-baseline="central">+</text>
+<text x="460" y="225" font-size="12" font-weight="500" fill="#3C3489" text-anchor="middle" dominant-baseline="central">U1A</text>
+<path d="M420 250 L400 250 L400 330" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<text x="392" y="340" font-size="11" font-weight="400" fill="#5F5E5A" text-anchor="end" dominant-baseline="central">+ giriş ← VREF</text>
+<circle cx="520" cy="225" r="3.5" fill="#444441"/>
+<path d="M520 225 L580 225" fill="none" stroke="#534AB7" stroke-width="1.6" stroke-linejoin="round"/>
+<circle cx="580" cy="225" r="3.5" fill="#534AB7"/>
+<path d="M580 225 L660 225" fill="none" stroke="#534AB7" stroke-width="1.6" stroke-linejoin="round"/>
+<path d="M660 225 L665 225 L668 219 L674 231 L680 219 L686 231 L692 219 L695 225 L700 225" fill="none" stroke="#534AB7" stroke-width="1.4" stroke-linejoin="round"/>
+<text x="680" y="209" font-size="12" font-weight="400" fill="#444441" text-anchor="middle" dominant-baseline="central">R8 100 Ω</text>
+<path d="M700 225 L780 225" fill="none" stroke="#534AB7" stroke-width="1.6" stroke-linejoin="round"/>
+<text x="790" y="218" font-size="13" font-weight="500" fill="#444441" text-anchor="start" dominant-baseline="central">→ ESP32 B · GPIO34</text>
+<text x="790" y="238" font-size="12" font-weight="400" fill="#5F5E5A" text-anchor="start" dominant-baseline="central">(ADC1_CH6)</text>
+<text x="640" y="255" font-size="12" font-weight="500" fill="#534AB7" text-anchor="middle" dominant-baseline="central">VOUT</text>
+<text x="130" y="380" font-size="12" font-weight="500" fill="#444441" text-anchor="middle" dominant-baseline="central">3V3</text>
+<path d="M120 390 L140 390" fill="none" stroke="#444441" stroke-width="1.6" stroke-linejoin="round"/>
+<path d="M130 390 L130 400" fill="none" stroke="#444441" stroke-width="1.2" stroke-linejoin="round"/>
+<path d="M130 400 L130 405 L124 408 L136 414 L124 420 L136 426 L124 432 L130 435 L130 440" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<text x="142" y="420" font-size="12" font-weight="400" fill="#444441" text-anchor="start" dominant-baseline="central">R6 10 kΩ</text>
+<path d="M130 440 L130 450" fill="none" stroke="#444441" stroke-width="1.2" stroke-linejoin="round"/>
+<circle cx="130" cy="450" r="3.5" fill="#444441"/>
+<path d="M130 455 L130 460 L124 463 L136 469 L124 475 L136 481 L124 487 L130 490 L130 495" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<text x="142" y="475" font-size="12" font-weight="400" fill="#444441" text-anchor="start" dominant-baseline="central">R7 10 kΩ</text>
+<path d="M130 450 L130 455" fill="none" stroke="#444441" stroke-width="1.2" stroke-linejoin="round"/>
+<path d="M130 495 L130 505" fill="none" stroke="#444441" stroke-width="1.2" stroke-linejoin="round"/>
+<path d="M120 505 L140 505" fill="none" stroke="#444441" stroke-width="1.6" stroke-linejoin="round"/>
+<path d="M124 509 L136 509" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M128 513 L132 513" fill="none" stroke="#444441" stroke-width="1.2" stroke-linejoin="round"/>
+<path d="M130 450 L230 450" fill="none" stroke="#444441" stroke-width="1.2" stroke-linejoin="round"/>
+<circle cx="230" cy="450" r="3.5" fill="#444441"/>
+<path d="M230 450 L230 464" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M220 464 L240 464" fill="none" stroke="#444441" stroke-width="2" stroke-linejoin="round"/>
+<path d="M220 470 L240 470" fill="none" stroke="#444441" stroke-width="2" stroke-linejoin="round"/>
+<path d="M230 470 L230 482" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M220 482 L240 482" fill="none" stroke="#444441" stroke-width="1.6" stroke-linejoin="round"/>
+<path d="M224 486 L236 486" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M228 490 L232 490" fill="none" stroke="#444441" stroke-width="1.2" stroke-linejoin="round"/>
+<text x="244" y="467" font-size="12" font-weight="400" fill="#444441" text-anchor="start" dominant-baseline="central">C3 1 µF</text>
+<path d="M230 450 L300 450 L300 480 L340 480" fill="none" stroke="#444441" stroke-width="1.2" stroke-linejoin="round"/>
+<path d="M340 405 L340 505 L440 455 Z" fill="#EEEDFE" stroke="#534AB7" stroke-width="1.2"/>
+<text x="350" y="430" font-size="16" font-weight="600" fill="#3C3489" text-anchor="start" dominant-baseline="central">−</text>
+<text x="350" y="480" font-size="16" font-weight="600" fill="#3C3489" text-anchor="start" dominant-baseline="central">+</text>
+<text x="380" y="455" font-size="12" font-weight="500" fill="#3C3489" text-anchor="middle" dominant-baseline="central">U1B</text>
+<path d="M440 455 L470 455" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<circle cx="470" cy="455" r="3.5" fill="#444441"/>
+<path d="M470 455 L470 390 L320 390 L320 430 L340 430" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<text x="395" y="380" font-size="11" font-weight="400" fill="#5F5E5A" text-anchor="middle" dominant-baseline="central">gerilim izleyici (kazanç 1)</text>
+<path d="M470 455 L520 455 L520 330 L400 330" fill="none" stroke="#444441" stroke-width="1.4" stroke-linejoin="round"/>
+<text x="530" y="455" font-size="12" font-weight="500" fill="#444441" text-anchor="start" dominant-baseline="central">VREF = 1.65 V</text>
+<rect x="640" y="300" width="330" height="210" rx="12" fill="none" stroke="#888780" stroke-width="1" stroke-dasharray="6 4"/>
+<text x="654" y="318" font-size="14" font-weight="500" fill="#5F5E5A" dominant-baseline="central">Besleme ve pinler (MCP6002, DIP-8)</text>
+<rect x="740" y="335" width="130" height="110" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="805" y="350" font-size="12" font-weight="600" fill="#444441" text-anchor="middle" dominant-baseline="central">MCP6002</text>
+<text x="735" y="370" font-size="11" font-weight="400" fill="#444441" text-anchor="end" dominant-baseline="central">1 OUTA</text>
+<text x="875" y="370" font-size="11" font-weight="400" fill="#444441" text-anchor="start" dominant-baseline="central">8 VDD (3V3)</text>
+<text x="735" y="390" font-size="11" font-weight="400" fill="#444441" text-anchor="end" dominant-baseline="central">2 INA−</text>
+<text x="875" y="390" font-size="11" font-weight="400" fill="#444441" text-anchor="start" dominant-baseline="central">7 OUTB</text>
+<text x="735" y="410" font-size="11" font-weight="400" fill="#444441" text-anchor="end" dominant-baseline="central">3 INA+</text>
+<text x="875" y="410" font-size="11" font-weight="400" fill="#444441" text-anchor="start" dominant-baseline="central">6 INB−</text>
+<text x="735" y="430" font-size="11" font-weight="400" fill="#444441" text-anchor="end" dominant-baseline="central">4 VSS (GND)</text>
+<text x="875" y="430" font-size="11" font-weight="400" fill="#444441" text-anchor="start" dominant-baseline="central">5 INB+</text>
+<text x="805" y="470" font-size="12" font-weight="400" fill="#5F5E5A" text-anchor="middle" dominant-baseline="central">VDD–VSS arasına 100 nF, pinlere yakın</text>
+<text x="805" y="490" font-size="12" font-weight="400" fill="#5F5E5A" text-anchor="middle" dominant-baseline="central">3V3 ve GND: ESP32 A'dan</text>
+<rect x="30" y="540" width="940" height="160" rx="12" fill="none" stroke="#888780" stroke-width="1" stroke-dasharray="6 4"/>
+<text x="44" y="558" font-size="14" font-weight="500" fill="#5F5E5A" dominant-baseline="central">Denklemler</text>
+<text x="50" y="585" font-size="13" font-weight="400" fill="#444441" text-anchor="start" dominant-baseline="central">VOUT = VREF − (Rf/R2)·(V_DAC1 − VREF) − (Rf/R3)·(V_DAC2 − VREF)     →  Rf = R2 = R3 olduğundan: VOUT − 1.65 = −(s(t) + n(t))</text>
+<text x="50" y="613" font-size="13" font-weight="400" fill="#444441" text-anchor="start" dominant-baseline="central">fc = 1 / (2π·Rf·Cf) = 1 / (2π · 10 kΩ · 3.3 nF) ≈ 4.8 kHz   →   1 kHz ve 2 kHz tonları geçer, 8 kHz DAC basamakları yumuşar</text>
+<text x="50" y="641" font-size="13" font-weight="400" fill="#444441" text-anchor="start" dominant-baseline="central">Eviren yapı sinyali 180° çevirir: BFSK'da önemsiz, QPSK / 16-QAM'de preamble ile ölçülen faza zaten dahil olur</text>
+<text x="50" y="669" font-size="13" font-weight="400" fill="#444441" text-anchor="start" dominant-baseline="central">DAC'lar 128 kodda (≈1.65 V) dururken VOUT = 1.65 V: kuplaj kondansatörü ve ofset bölücüsü gerekmez</text>
+</svg>

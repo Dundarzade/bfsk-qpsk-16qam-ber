@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="600" viewBox="0 0 980 600" role="img" font-family="Helvetica, Arial, sans-serif">
+<title>ESP32 tabanlı kablolu modem: iki düğüm arasında BFSK / QPSK / 16-QAM</title><desc>Her ESP32 butonlardan veya rastgele üreteçten gelen bitleri sembole çevirir, DAC ile analog dalga üretir; dalga RC filtre ve gürültü toplayıcıdan geçip karşı kartın ADC girişine ulaşır; alıcı korelasyonla bitleri çözer ve LED, seri port veya MATLAB'a verir.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#C9C7BE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<rect width="980" height="600" fill="#0d1117"/>
+<rect x="20" y="30" width="330" height="330" rx="12" fill="none" stroke="#6E6D66" stroke-width="1" stroke-dasharray="6 4"/>
+<text x="34" y="48" font-size="14" font-weight="500" fill="#B4B2A9" dominant-baseline="central">ESP32 A  (verici)</text>
+<rect x="40" y="70" width="130" height="56" rx="8" fill="#412402" stroke="#EF9F27" stroke-width="0.8"/>
+<text x="105.0" y="88.0" font-size="14" font-weight="500" fill="#FAC775" text-anchor="middle" dominant-baseline="central">Butonlar</text>
+<text x="105.0" y="108.0" font-size="12" font-weight="400" fill="#EF9F27" text-anchor="middle" dominant-baseline="central">4 bit + gönder</text>
+<rect x="190" y="70" width="140" height="56" rx="8" fill="#412402" stroke="#EF9F27" stroke-width="0.8"/>
+<text x="260.0" y="88.0" font-size="14" font-weight="500" fill="#FAC775" text-anchor="middle" dominant-baseline="central">PRBS üreteci</text>
+<text x="260.0" y="108.0" font-size="12" font-weight="400" fill="#EF9F27" text-anchor="middle" dominant-baseline="central">BER testi için</text>
+<path d="M105 126 L105 150 L185 150 L185 162" fill="none" stroke="#C9C7BE" stroke-width="1.2" marker-end="url(#arrow)"/>
+<path d="M260 126 L260 150 L185 150" fill="none" stroke="#C9C7BE" stroke-width="1.2" marker-end="url(#arrow)"/>
+<rect x="60" y="164" width="250" height="56" rx="8" fill="#26215C" stroke="#AFA9EC" stroke-width="0.8"/>
+<text x="185.0" y="182.0" font-size="14" font-weight="500" fill="#CECBF6" text-anchor="middle" dominant-baseline="central">Sembol eşleme</text>
+<text x="185.0" y="202.0" font-size="12" font-weight="400" fill="#AFA9EC" text-anchor="middle" dominant-baseline="central">BFSK: ton · QPSK: faz · 16-QAM: I/Q</text>
+<path d="M185 220 L185 242" fill="none" stroke="#C9C7BE" stroke-width="1.2" marker-end="url(#arrow)"/>
+<rect x="60" y="244" width="250" height="56" rx="8" fill="#26215C" stroke="#AFA9EC" stroke-width="0.8"/>
+<text x="185.0" y="262.0" font-size="14" font-weight="500" fill="#CECBF6" text-anchor="middle" dominant-baseline="central">Örnek üretimi (fs = 8 kHz)</text>
+<text x="185.0" y="282.0" font-size="12" font-weight="400" fill="#AFA9EC" text-anchor="middle" dominant-baseline="central">sin/cos tablosu, fc = 1 kHz</text>
+<path d="M185 300 L185 318" fill="none" stroke="#C9C7BE" stroke-width="1.2" marker-end="url(#arrow)"/>
+<rect x="110" y="320" width="150" height="30" rx="8" fill="#04342C" stroke="#5DCAA5" stroke-width="0.8"/>
+<text x="185.0" y="335.0" font-size="14" font-weight="500" fill="#9FE1CB" text-anchor="middle" dominant-baseline="central">DAC1 (GPIO25)</text>
+<rect x="370" y="30" width="240" height="330" rx="12" fill="none" stroke="#6E6D66" stroke-width="1" stroke-dasharray="6 4"/>
+<text x="384" y="48" font-size="14" font-weight="500" fill="#B4B2A9" dominant-baseline="central">Kanal  (breadboard)</text>
+<path d="M260 335 L380 335 L380 190 L398 190" fill="none" stroke="#C9C7BE" stroke-width="1.2" marker-end="url(#arrow)"/>
+<rect x="400" y="150" width="190" height="80" rx="8" fill="#2C2C2A" stroke="#B4B2A9" stroke-width="0.8"/>
+<text x="495.0" y="170.0" font-size="14" font-weight="500" fill="#E6E4DC" text-anchor="middle" dominant-baseline="central">MCP6002 toplayıcı</text>
+<text x="495.0" y="190.0" font-size="12" font-weight="400" fill="#B4B2A9" text-anchor="middle" dominant-baseline="central">sinyal + gürültü, kazanç −1</text>
+<text x="495.0" y="210.0" font-size="12" font-weight="400" fill="#B4B2A9" text-anchor="middle" dominant-baseline="central">fc ≈ 4.8 kHz, çıkış 1.65 V ± …</text>
+<rect x="400" y="280" width="190" height="56" rx="8" fill="#4A1B0C" stroke="#F0997B" stroke-width="0.8"/>
+<text x="495.0" y="298.0" font-size="14" font-weight="500" fill="#F5C4B3" text-anchor="middle" dominant-baseline="central">Gürültü kaynağı</text>
+<text x="495.0" y="318.0" font-size="12" font-weight="400" fill="#F0997B" text-anchor="middle" dominant-baseline="central">DAC2 (GPIO26), Eb/N0 ayarı</text>
+<path d="M495 280 L495 232" fill="none" stroke="#C9C7BE" stroke-width="1.2" marker-end="url(#arrow)"/>
+<rect x="630" y="30" width="330" height="330" rx="12" fill="none" stroke="#6E6D66" stroke-width="1" stroke-dasharray="6 4"/>
+<text x="644" y="48" font-size="14" font-weight="500" fill="#B4B2A9" dominant-baseline="central">ESP32 B  (alıcı)</text>
+<path d="M590 190 L650 190 L650 82 L668 82" fill="none" stroke="#C9C7BE" stroke-width="1.2" marker-end="url(#arrow)"/>
+<rect x="670" y="66" width="150" height="30" rx="8" fill="#04342C" stroke="#5DCAA5" stroke-width="0.8"/>
+<text x="745.0" y="81.0" font-size="14" font-weight="500" fill="#9FE1CB" text-anchor="middle" dominant-baseline="central">ADC1_CH6 (GPIO34)</text>
+<path d="M795 96 L795 118" fill="none" stroke="#C9C7BE" stroke-width="1.2" marker-end="url(#arrow)"/>
+<rect x="670" y="120" width="250" height="56" rx="8" fill="#26215C" stroke="#AFA9EC" stroke-width="0.8"/>
+<text x="795.0" y="138.0" font-size="14" font-weight="500" fill="#CECBF6" text-anchor="middle" dominant-baseline="central">Örnekleme (fs = 8 kHz, DMA)</text>
+<text x="795.0" y="158.0" font-size="12" font-weight="400" fill="#AFA9EC" text-anchor="middle" dominant-baseline="central">12 bit, DC ofset çıkarılır</text>
+<path d="M795 176 L795 198" fill="none" stroke="#C9C7BE" stroke-width="1.2" marker-end="url(#arrow)"/>
+<rect x="670" y="200" width="250" height="56" rx="8" fill="#26215C" stroke="#AFA9EC" stroke-width="0.8"/>
+<text x="795.0" y="218.0" font-size="14" font-weight="500" fill="#CECBF6" text-anchor="middle" dominant-baseline="central">Korelatör bankası</text>
+<text x="795.0" y="238.0" font-size="12" font-weight="400" fill="#AFA9EC" text-anchor="middle" dominant-baseline="central">sin/cos ile çarp, sembol boyunca topla</text>
+<path d="M795 256 L795 278" fill="none" stroke="#C9C7BE" stroke-width="1.2" marker-end="url(#arrow)"/>
+<rect x="670" y="280" width="250" height="56" rx="8" fill="#26215C" stroke="#AFA9EC" stroke-width="0.8"/>
+<text x="795.0" y="298.0" font-size="14" font-weight="500" fill="#CECBF6" text-anchor="middle" dominant-baseline="central">Karar + bit hatası sayacı</text>
+<text x="795.0" y="318.0" font-size="12" font-weight="400" fill="#AFA9EC" text-anchor="middle" dominant-baseline="central">BFSK: |z1|≷|z0| · QPSK/QAM: kesici</text>
+<path d="M330 98 L350 98" fill="none" stroke="#5DCAA5" stroke-width="1.4" stroke-dasharray="5 4" stroke-linejoin="round"/>
+<path d="M350 98 L350 20 L940 20 L940 150 L920 150" fill="none" stroke="#5DCAA5" stroke-width="1.4" stroke-dasharray="5 4" stroke-linejoin="round"/>
+<text x="645" y="12" font-size="12" font-weight="400" fill="#5DCAA5" text-anchor="middle" dominant-baseline="central">isteğe bağlı sembol saati kablosu (GPIO18 → GPIO19)</text>
+<rect x="20" y="390" width="940" height="190" rx="12" fill="none" stroke="#6E6D66" stroke-width="1" stroke-dasharray="6 4"/>
+<text x="34" y="408" font-size="14" font-weight="500" fill="#B4B2A9" dominant-baseline="central">Çıktılar ve ölçüm</text>
+<path d="M795 336 L795 420" fill="none" stroke="#C9C7BE" stroke-width="1.2" marker-end="url(#arrow)"/>
+<rect x="640" y="422" width="300" height="56" rx="8" fill="#412402" stroke="#EF9F27" stroke-width="0.8"/>
+<text x="790.0" y="440.0" font-size="14" font-weight="500" fill="#FAC775" text-anchor="middle" dominant-baseline="central">4 LED + seri port</text>
+<text x="790.0" y="460.0" font-size="12" font-weight="400" fill="#EF9F27" text-anchor="middle" dominant-baseline="central">çözülen bitler, anlık BER</text>
+<rect x="330" y="422" width="280" height="56" rx="8" fill="#04342C" stroke="#5DCAA5" stroke-width="0.8"/>
+<text x="470.0" y="440.0" font-size="14" font-weight="500" fill="#9FE1CB" text-anchor="middle" dominant-baseline="central">USB seri → MATLAB</text>
+<text x="470.0" y="460.0" font-size="12" font-weight="400" fill="#5DCAA5" text-anchor="middle" dominant-baseline="central">ham ADC örnekleri, takımyıldız</text>
+<path d="M640 450 L612 450" fill="none" stroke="#C9C7BE" stroke-width="1.2" marker-end="url(#arrow)"/>
+<rect x="40" y="422" width="260" height="56" rx="8" fill="#2C2C2A" stroke="#B4B2A9" stroke-width="0.8"/>
+<text x="170.0" y="440.0" font-size="14" font-weight="500" fill="#E6E4DC" text-anchor="middle" dominant-baseline="central">Ölçülen BER – Eb/N0</text>
+<text x="170.0" y="460.0" font-size="12" font-weight="400" fill="#B4B2A9" text-anchor="middle" dominant-baseline="central">src/ simülasyonu + teori ile kıyas</text>
+<path d="M330 450 L302 450" fill="none" stroke="#C9C7BE" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="490" y="520" font-size="13" font-weight="400" fill="#E6E4DC" text-anchor="middle" dominant-baseline="central">Ters yön (B → A) aynı yapının ayna kopyası: B'nin GPIO25'i → A'nın GPIO34'ü.</text>
+<text x="490" y="546" font-size="13" font-weight="400" fill="#E6E4DC" text-anchor="middle" dominant-baseline="central">Tüm kartlarda GND ortak bağlanır.</text>
+</svg>
