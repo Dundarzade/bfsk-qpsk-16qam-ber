@@ -1,6 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="880" viewBox="0 0 900 880" role="img" font-family="Helvetica, Arial, sans-serif">
 <title>QPSK uçtan uca sistem: verici, AWGN kanal, korelasyon alıcısı</title><desc>QPSK uçtan uca sistem: verici, AWGN kanal, korelasyon alıcısı</desc>
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#D3D1C7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<rect x="0" y="0" width="900" height="880" fill="#0d1117" rx="10"/>
 <rect x="20" y="30" width="860" height="250" rx="12" fill="none" stroke="#888780" stroke-width="1" stroke-dasharray="6 4"/>
 <text x="34" y="48" font-size="14" font-weight="500" fill="#B4B2A9" text-anchor="start" dominant-baseline="central">1  Verici</text>
 <rect x="40" y="127" width="90" height="56" rx="8" fill="#444441" stroke="#B4B2A9" stroke-width="0.8"/>
