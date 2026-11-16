@@ -4,15 +4,28 @@ Dört biti aynı anda gönderir: iki bit I ekseninin **seviyesini**, iki bit Q e
 
 | Dosya | İçerik |
 |---|---|
-| `qam16_verici.svg` / `.png` | Verici: S/P, her eksende Gray 4-PAM, cos / −sin taşıyıcılar |
-| `qam16_alici.svg` / `.png` | Alıcı: iki korelatör, her kolda 4 seviyeli dilimleyici |
-| `qam16_tam_sistem.svg` / `.png` | Verici + kanal + alıcı tek şekilde |
+| `qam16_sistem.svg` | Bitten bite bütün sistem: verici + AWGN kanal + alıcı |
+| `qam16_adim_adim.m` | Öğretici MATLAB script: 12 rastgele bit → verici → kanal → korelatör → karar, her adım yorumlu ve grafikli |
+| `qam16_verici.svg` | Verici: S/P, her eksende Gray 4-PAM, cos / −sin taşıyıcılar |
+| `qam16_alici.svg` | Alıcı: iki korelatör, her kolda 4 seviyeli dilimleyici |
 
 Gray etiketli yıldız diyagramı: [`../genel/constellations_gray.svg`](../genel/constellations_gray.svg)
 
+## 0. Bütün sistem
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="qam16_sistem_dark.svg">
+  <img alt="16-QAM uçtan uca sistem" src="qam16_sistem.svg">
+</picture>
+
+`qam16_adim_adim.m` bu diyagramı bölüm bölüm takip eder: `%% 1) VERİCİ`, `%% 2) KANAL`, `%% 3-4) ALICI`, `%% 5) KARAR`, `%% 6) SONUÇ`.
+
 ## 1. Verici
 
-![16-QAM vericisi](qam16_verici.svg)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="qam16_verici_dark.svg">
+  <img alt="16-QAM vericisi" src="qam16_verici.svg">
+</picture>
 
 Bitler dörder gruplanır, $[b_1\ b_2\ b_3\ b_4]$. Her eksen Gray kodlu bir 4-PAM'dir:
 
@@ -42,7 +55,10 @@ r(t) = s(t) + n(t)
 
 ## 3. Alıcı – iki korelatör
 
-![16-QAM alıcısı](qam16_alici.svg)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="qam16_alici_dark.svg">
+  <img alt="16-QAM alıcısı" src="qam16_alici.svg">
+</picture>
 
 Korelatörler QPSK ile aynıdır:
 

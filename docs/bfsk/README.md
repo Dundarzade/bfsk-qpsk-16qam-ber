@@ -4,20 +4,26 @@ Her bit bir frekansla gönderilir: 1 → $f_1$, 0 → $f_2$. Bilgi genlikte değ
 
 | Dosya | İçerik |
 |---|---|
-| `bfsk_sistem.svg` / `.png` | Verici + AWGN kanal + alıcı tek şekilde |
-| `bfsk_verici.svg` / `.png` | Verici: bit değerine göre iki tondan birini seçme |
-| `bfsk_alici.svg` / `.png` | Alıcı: iki korelatör, $z_1 - z_2$ ve sıfır eşiği |
+| `bfsk_sistem.svg` | Verici + AWGN kanal + alıcı tek şekilde |
+| `bfsk_verici.svg` | Verici: bit değerine göre iki tondan birini seçme |
+| `bfsk_alici.svg` | Alıcı: iki korelatör, $z_1 - z_2$ ve sıfır eşiği |
 | `bfsk_adim_adim.m` | Öğretici MATLAB script: 10 rastgele bit → verici → kanal → korelatör → karar, her adım yorumlu ve grafikli |
 
 ## 0. Bütün sistem
 
-![BFSK uçtan uca sistem](bfsk_sistem.svg)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="bfsk_sistem_dark.svg">
+  <img alt="BFSK uçtan uca sistem" src="bfsk_sistem.svg">
+</picture>
 
 `bfsk_adim_adim.m` bu diyagramı bölüm bölüm takip eder: `%% 1) VERİCİ`, `%% 2) KANAL`, `%% 3-4) ALICI`, `%% 5) KARAR`, `%% 6) SONUÇ`.
 
 ## 1. Verici
 
-![BFSK vericisi](bfsk_verici.svg)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="bfsk_verici_dark.svg">
+  <img alt="BFSK vericisi" src="bfsk_verici.svg">
+</picture>
 
 ```math
 s(t) = \begin{cases} \cos(2\pi f_1 t), & b = 1 \\ \cos(2\pi f_2 t), & b = 0 \end{cases} \qquad 0 \le t < T_b
@@ -47,7 +53,10 @@ r(t) = s(t) + n(t), \qquad n(t): \text{beyaz Gauss, güç yoğunluğu } N_0/2
 
 ## 3. Alıcı – korelatör
 
-![BFSK alıcısı](bfsk_alici.svg)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="bfsk_alici_dark.svg">
+  <img alt="BFSK alıcısı" src="bfsk_alici.svg">
+</picture>
 
 Gelen bit parçası iki referansla çarpılıp bir bit boyunca integre edilir:
 

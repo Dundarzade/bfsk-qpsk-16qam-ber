@@ -4,15 +4,28 @@
 
 | Dosya | İçerik |
 |---|---|
-| `qpsk_verici.svg` / `.png` | Verici: S/P, I/Q eşleme, cos / −sin taşıyıcılar |
-| `qpsk_alici.svg` / `.png` | Alıcı: iki korelatör, her kolda işaret kararı |
-| `qpsk_tam_sistem.svg` / `.png` | Verici + kanal + alıcı tek şekilde |
+| `qpsk_sistem.svg` | Bitten bite bütün sistem: verici + AWGN kanal + alıcı |
+| `qpsk_adim_adim.m` | Öğretici MATLAB script: 10 rastgele bit → verici → kanal → korelatör → karar, her adım yorumlu ve grafikli |
+| `qpsk_verici.svg` | Verici: S/P, I/Q eşleme, cos / −sin taşıyıcılar |
+| `qpsk_alici.svg` | Alıcı: iki korelatör, her kolda işaret kararı |
 
 Gray etiketli yıldız diyagramı: [`../genel/constellations_gray.svg`](../genel/constellations_gray.svg)
 
+## 0. Bütün sistem
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="qpsk_sistem_dark.svg">
+  <img alt="QPSK uçtan uca sistem" src="qpsk_sistem.svg">
+</picture>
+
+`qpsk_adim_adim.m` bu diyagramı bölüm bölüm takip eder: `%% 1) VERİCİ`, `%% 2) KANAL`, `%% 3-4) ALICI`, `%% 5) KARAR`, `%% 6) SONUÇ`.
+
 ## 1. Verici
 
-![QPSK vericisi](qpsk_verici.svg)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="qpsk_verici_dark.svg">
+  <img alt="QPSK vericisi" src="qpsk_verici.svg">
+</picture>
 
 Bitler ikişer gruplanır, $[b_1\ b_2]$:
 
@@ -42,7 +55,10 @@ r(t) = s(t) + n(t)
 
 ## 3. Alıcı – iki korelatör
 
-![QPSK alıcısı](qpsk_alici.svg)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="qpsk_alici_dark.svg">
+  <img alt="QPSK alıcısı" src="qpsk_alici.svg">
+</picture>
 
 ```math
 z_I = \frac{2}{T_s}\int_0^{T_s} r(t)\cos(2\pi f_c t)\,dt, \qquad

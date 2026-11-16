@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="880" viewBox="0 0 900 880" role="img" font-family="Helvetica, Arial, sans-serif">
+<title>16-QAM uçtan uca sistem: verici, AWGN kanal, korelasyon alıcısı</title><desc>16-QAM uçtan uca sistem: verici, AWGN kanal, korelasyon alıcısı</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#D3D1C7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<rect x="20" y="30" width="860" height="250" rx="12" fill="none" stroke="#888780" stroke-width="1" stroke-dasharray="6 4"/>
+<text x="34" y="48" font-size="14" font-weight="500" fill="#B4B2A9" text-anchor="start" dominant-baseline="central">1  Verici</text>
+<rect x="40" y="127" width="90" height="56" rx="8" fill="#444441" stroke="#B4B2A9" stroke-width="0.8"/>
+<text x="85.0" y="145.0" font-size="14" font-weight="500" fill="#D3D1C7" text-anchor="middle" dominant-baseline="central">b[n]</text>
+<text x="85.0" y="165.0" font-size="12" font-weight="400" fill="#B4B2A9" text-anchor="middle" dominant-baseline="central">randi</text>
+<path d="M130 155 L148 155" fill="none" stroke="#D3D1C7" stroke-width="1.2" marker-end="url(#arrow)"/>
+<rect x="150" y="127" width="90" height="56" rx="8" fill="#444441" stroke="#B4B2A9" stroke-width="0.8"/>
+<text x="195.0" y="145.0" font-size="14" font-weight="500" fill="#D3D1C7" text-anchor="middle" dominant-baseline="central">S/P</text>
+<text x="195.0" y="165.0" font-size="12" font-weight="400" fill="#B4B2A9" text-anchor="middle" dominant-baseline="central">[b₁…b₄]</text>
+<path d="M240 155 L255 155 L255 95 L268 95" fill="none" stroke="#D3D1C7" stroke-width="1.2" marker-end="url(#arrow)"/>
+<path d="M255 155 L255 215 L268 215" fill="none" stroke="#D3D1C7" stroke-width="1.2" marker-end="url(#arrow)"/>
+<rect x="270" y="67" width="180" height="56" rx="8" fill="#3C3489" stroke="#AFA9EC" stroke-width="0.8"/>
+<text x="360.0" y="85.0" font-size="14" font-weight="500" fill="#CECBF6" text-anchor="middle" dominant-baseline="central">aI = G(b₁b₂)/√10</text>
+<text x="360.0" y="105.0" font-size="12" font-weight="400" fill="#AFA9EC" text-anchor="middle" dominant-baseline="central">b₁b₂ → I seviyesi</text>
+<rect x="270" y="187" width="180" height="56" rx="8" fill="#3C3489" stroke="#AFA9EC" stroke-width="0.8"/>
+<text x="360.0" y="205.0" font-size="14" font-weight="500" fill="#CECBF6" text-anchor="middle" dominant-baseline="central">aQ = G(b₃b₄)/√10</text>
+<text x="360.0" y="225.0" font-size="12" font-weight="400" fill="#AFA9EC" text-anchor="middle" dominant-baseline="central">b₃b₄ → Q seviyesi</text>
+<path d="M450 95 L472 95" fill="none" stroke="#D3D1C7" stroke-width="1.2" marker-end="url(#arrow)"/>
+<path d="M450 215 L472 215" fill="none" stroke="#D3D1C7" stroke-width="1.2" marker-end="url(#arrow)"/>
+<rect x="440" y="36" width="100" height="30" rx="8" fill="#085041" stroke="#5DCAA5" stroke-width="0.8"/>
+<text x="490.0" y="51.0" font-size="14" font-weight="500" fill="#9FE1CB" text-anchor="middle" dominant-baseline="central">cos 2πfct</text>
+<path d="M490 66 L490 77" fill="none" stroke="#D3D1C7" stroke-width="1.2" marker-end="url(#arrow)"/>
+<rect x="440" y="246" width="100" height="30" rx="8" fill="#085041" stroke="#5DCAA5" stroke-width="0.8"/>
+<text x="490.0" y="261.0" font-size="14" font-weight="500" fill="#9FE1CB" text-anchor="middle" dominant-baseline="central">−sin 2πfct</text>
+<path d="M490 246 L490 233" fill="none" stroke="#D3D1C7" stroke-width="1.2" marker-end="url(#arrow)"/>
+<circle cx="490" cy="95" r="16" fill="#444441" stroke="#B4B2A9" stroke-width="0.8"/>
+<text x="490" y="95" font-size="16" font-weight="400" fill="#D3D1C7" text-anchor="middle" dominant-baseline="central">×</text>
+<circle cx="490" cy="215" r="16" fill="#444441" stroke="#B4B2A9" stroke-width="0.8"/>
+<text x="490" y="215" font-size="16" font-weight="400" fill="#D3D1C7" text-anchor="middle" dominant-baseline="central">×</text>
+<path d="M506 95 L590 95 L590 135" fill="none" stroke="#D3D1C7" stroke-width="1.2" marker-end="url(#arrow)"/>
+<path d="M506 215 L590 215 L590 175" fill="none" stroke="#D3D1C7" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="548" y="83" font-size="12" font-weight="400" fill="#B4B2A9" text-anchor="middle" dominant-baseline="central">aI·cos</text>
+<text x="548" y="229" font-size="12" font-weight="400" fill="#B4B2A9" text-anchor="middle" dominant-baseline="central">−aQ·sin</text>
+<circle cx="590" cy="155" r="18" fill="#444441" stroke="#B4B2A9" stroke-width="0.8"/>
+<text x="590" y="155" font-size="15" font-weight="400" fill="#D3D1C7" text-anchor="middle" dominant-baseline="central">Σ</text>
+<path d="M608 155 L638 155" fill="none" stroke="#D3D1C7" stroke-width="1.2" marker-end="url(#arrow)"/>
+<rect x="640" y="127" width="220" height="56" rx="8" fill="#3C3489" stroke="#AFA9EC" stroke-width="0.8"/>
+<text x="750.0" y="145.0" font-size="14" font-weight="500" fill="#CECBF6" text-anchor="middle" dominant-baseline="central">s(t)</text>
+<text x="750.0" y="165.0" font-size="12" font-weight="400" fill="#AFA9EC" text-anchor="middle" dominant-baseline="central">aI cos 2πfct − aQ sin 2πfct</text>
+<rect x="20" y="300" width="860" height="90" rx="12" fill="none" stroke="#888780" stroke-width="1" stroke-dasharray="6 4"/>
+<text x="34" y="345" font-size="14" font-weight="500" fill="#B4B2A9" text-anchor="start" dominant-baseline="central">2  Kanal (AWGN)</text>
+<path d="M750 183 L750 325" fill="none" stroke="#D3D1C7" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="180" y="345" font-size="13" font-weight="400" fill="#B4B2A9" text-anchor="start" dominant-baseline="central">r(t) = s(t) + n(t),   N0 = Eb / 10^(EbN0_dB/10)</text>
+<rect x="560" y="323" width="130" height="44" rx="8" fill="#712B13" stroke="#F0997B" stroke-width="0.8"/>
+<text x="625.0" y="345.0" font-size="14" font-weight="500" fill="#F5C4B3" text-anchor="middle" dominant-baseline="central">n(t)</text>
+<path d="M690 345 L730 345" fill="none" stroke="#D3D1C7" stroke-width="1.2" marker-end="url(#arrow)"/>
+<circle cx="750" cy="345" r="18" fill="#712B13" stroke="#F0997B" stroke-width="0.8"/>
+<text x="750" y="345" font-size="16" font-weight="400" fill="#F5C4B3" text-anchor="middle" dominant-baseline="central">+</text>
+<path d="M768 345 L788 345" fill="none" stroke="#D3D1C7" stroke-width="1.2" marker-end="url(#arrow)"/>
+<rect x="790" y="323" width="70" height="44" rx="8" fill="#712B13" stroke="#F0997B" stroke-width="0.8"/>
+<text x="825.0" y="345.0" font-size="14" font-weight="500" fill="#F5C4B3" text-anchor="middle" dominant-baseline="central">r(t)</text>
+<path d="M825 367 L825 400 L60 400 L60 560 L90 560" fill="none" stroke="#D3D1C7" stroke-width="1.2"/>
+<rect x="20" y="410" width="860" height="310" rx="12" fill="none" stroke="#888780" stroke-width="1" stroke-dasharray="6 4"/>
+<text x="866" y="428" font-size="14" font-weight="500" fill="#B4B2A9" text-anchor="end" dominant-baseline="central">3  Alıcı (korelatör)</text>
+<path d="M90 560 L90 490 L132 490" fill="none" stroke="#D3D1C7" stroke-width="1.2" marker-end="url(#arrow)"/>
+<path d="M90 560 L90 630 L132 630" fill="none" stroke="#D3D1C7" stroke-width="1.2" marker-end="url(#arrow)"/>
+<rect x="90" y="432" width="120" height="30" rx="8" fill="#085041" stroke="#5DCAA5" stroke-width="0.8"/>
+<text x="150.0" y="447.0" font-size="14" font-weight="500" fill="#9FE1CB" text-anchor="middle" dominant-baseline="central">cos 2πfct</text>
+<path d="M150 462 L150 472" fill="none" stroke="#D3D1C7" stroke-width="1.2" marker-end="url(#arrow)"/>
+<rect x="90" y="660" width="120" height="30" rx="8" fill="#085041" stroke="#5DCAA5" stroke-width="0.8"/>
+<text x="150.0" y="675.0" font-size="14" font-weight="500" fill="#9FE1CB" text-anchor="middle" dominant-baseline="central">−sin 2πfct</text>
+<path d="M150 660 L150 648" fill="none" stroke="#D3D1C7" stroke-width="1.2" marker-end="url(#arrow)"/>
+<circle cx="150" cy="490" r="16" fill="#444441" stroke="#B4B2A9" stroke-width="0.8"/>
+<text x="150" y="490" font-size="16" font-weight="400" fill="#D3D1C7" text-anchor="middle" dominant-baseline="central">×</text>
+<circle cx="150" cy="630" r="16" fill="#444441" stroke="#B4B2A9" stroke-width="0.8"/>
+<text x="150" y="630" font-size="16" font-weight="400" fill="#D3D1C7" text-anchor="middle" dominant-baseline="central">×</text>
+<path d="M166 490 L188 490" fill="none" stroke="#D3D1C7" stroke-width="1.2" marker-end="url(#arrow)"/>
+<path d="M166 630 L188 630" fill="none" stroke="#D3D1C7" stroke-width="1.2" marker-end="url(#arrow)"/>
+<rect x="190" y="462" width="210" height="56" rx="8" fill="#3C3489" stroke="#AFA9EC" stroke-width="0.8"/>
+<text x="295.0" y="480.0" font-size="14" font-weight="500" fill="#CECBF6" text-anchor="middle" dominant-baseline="central">(2/Ts)∫₀ᵀˢ r·cos dt</text>
+<text x="295.0" y="500.0" font-size="12" font-weight="400" fill="#AFA9EC" text-anchor="middle" dominant-baseline="central">zI = aI + nI</text>
+<rect x="190" y="602" width="210" height="56" rx="8" fill="#3C3489" stroke="#AFA9EC" stroke-width="0.8"/>
+<text x="295.0" y="620.0" font-size="14" font-weight="500" fill="#CECBF6" text-anchor="middle" dominant-baseline="central">(2/Ts)∫₀ᵀˢ r·(−sin) dt</text>
+<text x="295.0" y="640.0" font-size="12" font-weight="400" fill="#AFA9EC" text-anchor="middle" dominant-baseline="central">zQ = aQ + nQ</text>
+<path d="M400 490 L438 490" fill="none" stroke="#D3D1C7" stroke-width="1.2" marker-end="url(#arrow)"/>
+<path d="M400 630 L438 630" fill="none" stroke="#D3D1C7" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="419" y="478" font-size="13" font-weight="500" fill="#D3D1C7" text-anchor="middle" dominant-baseline="central">zI</text>
+<text x="419" y="644" font-size="13" font-weight="500" fill="#D3D1C7" text-anchor="middle" dominant-baseline="central">zQ</text>
+<rect x="440" y="462" width="190" height="56" rx="8" fill="#712B13" stroke="#F0997B" stroke-width="0.8"/>
+<text x="535.0" y="480.0" font-size="14" font-weight="500" fill="#F5C4B3" text-anchor="middle" dominant-baseline="central">4-PAM dilim → b₁b₂</text>
+<text x="535.0" y="500.0" font-size="12" font-weight="400" fill="#F0997B" text-anchor="middle" dominant-baseline="central">x = √10·zI; eşik −2, 0, +2</text>
+<rect x="440" y="602" width="190" height="56" rx="8" fill="#712B13" stroke="#F0997B" stroke-width="0.8"/>
+<text x="535.0" y="620.0" font-size="14" font-weight="500" fill="#F5C4B3" text-anchor="middle" dominant-baseline="central">4-PAM dilim → b₃b₄</text>
+<text x="535.0" y="640.0" font-size="12" font-weight="400" fill="#F0997B" text-anchor="middle" dominant-baseline="central">x = √10·zQ; eşik −2, 0, +2</text>
+<path d="M630 490 L650 490 L650 546 L668 546" fill="none" stroke="#D3D1C7" stroke-width="1.2" marker-end="url(#arrow)"/>
+<path d="M630 630 L650 630 L650 574 L668 574" fill="none" stroke="#D3D1C7" stroke-width="1.2" marker-end="url(#arrow)"/>
+<rect x="670" y="532" width="56" height="56" rx="8" fill="#444441" stroke="#B4B2A9" stroke-width="0.8"/>
+<text x="698.0" y="560.0" font-size="14" font-weight="500" fill="#D3D1C7" text-anchor="middle" dominant-baseline="central">P/S</text>
+<path d="M726 560 L748 560" fill="none" stroke="#D3D1C7" stroke-width="1.2" marker-end="url(#arrow)"/>
+<rect x="750" y="532" width="110" height="56" rx="8" fill="#444441" stroke="#B4B2A9" stroke-width="0.8"/>
+<text x="805.0" y="550.0" font-size="14" font-weight="500" fill="#D3D1C7" text-anchor="middle" dominant-baseline="central">bits_hat</text>
+<text x="805.0" y="570.0" font-size="12" font-weight="400" fill="#B4B2A9" text-anchor="middle" dominant-baseline="central">bits ile karşılaştır</text>
+<text x="30" y="750" font-size="13" font-weight="400" fill="#D3D1C7" text-anchor="start" dominant-baseline="central">Verici:  k = 4 bit/sembol, Ts = 4Tb.  G (Gray 4-PAM): 00 → −3, 01 → −1, 11 → +1, 10 → +3</text>
+<text x="30" y="772" font-size="13" font-weight="400" fill="#D3D1C7" text-anchor="start" dominant-baseline="central">Alıcı:  zI = aI + nI, zQ = aQ + nQ  (korelatörler QPSK ile aynı)</text>
+<text x="30" y="794" font-size="13" font-weight="400" fill="#D3D1C7" text-anchor="start" dominant-baseline="central">Karar:  her eksende en yakın seviye.  1. bit = (x &gt; 0),  2. bit = (|x| &lt; 2)</text>
+<text x="30" y="816" font-size="13" font-weight="400" fill="#B4B2A9" text-anchor="start" dominant-baseline="central">Es = 1 (÷√10, ham ortalama enerji 5 + 5 = 10),  Eb = Es/4</text>
+<text x="30" y="838" font-size="13" font-weight="400" fill="#B4B2A9" text-anchor="start" dominant-baseline="central">Teori: Pb = ¼·[3Q(u) + 2Q(3u) − Q(5u)],  u = √(4Eb/5N0)      kodda: qam16_adim_adim.m</text>
+</svg>
