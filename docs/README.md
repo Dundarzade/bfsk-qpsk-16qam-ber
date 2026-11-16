@@ -7,7 +7,7 @@ Project proposal, progress notes, final report and presentation, plus one folder
 | Folder | Contents |
 |---|---|
 | [`genel/`](genel/) | Diagrams common to all schemes: end-to-end BER simulation chain, Gray-coded QPSK / 16-QAM constellations |
-| [`bfsk/`](bfsk/) | BFSK transmitter and correlator receiver diagrams, math (signal model → correlator → decision → BER) |
+| [`bfsk/`](bfsk/) | BFSK full-system, transmitter and correlator receiver diagrams, step-by-step MATLAB script, math (signal model → correlator → decision → BER) |
 | [`qpsk/`](qpsk/) | QPSK transmitter (I/Q mapping) and receiver (two correlators, sign decisions), math, full-system figure |
 | [`qam16/`](qam16/) | 16-QAM transmitter (Gray 4-PAM per axis) and receiver (4-level slicers), math, full-system figure |
 
