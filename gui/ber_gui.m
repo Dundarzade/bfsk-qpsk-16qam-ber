@@ -15,29 +15,28 @@ function ber_gui
 %        d  = z1 - z2,   d > 0 -> 1,  d < 0 -> 0
 %   Teori: Pb = Q(sqrt(Eb/N0)) = 0.5*erfc(sqrt(Eb/N0/2))
 
-    % ---- BFSK parametreleri (adım adım script ile aynı) ----
-    P.Tb = 1;      % bit süresi [s]
-    P.fs = 100;    % örnekleme [Hz]; 9 Hz için yeterli, 1000 yerine 100 -> 10 kat hızlı
+    % ---- BFSK frekansları (adım adım script ile aynı) ----
     P.f1 = 9;      % bit 1 frekansı [Hz]
     P.f2 = 3;      % bit 0 frekansı [Hz]
+    % Tb (bit süresi) ve fs (örnekleme frekansı) arayüzden girilir.
 
     sonuc = struct('etiket', {}, 'bits', {}, 'bits_hat', {}, 'd', {}, 'nErr', {}, 'Eb', {});
 
     % ================= ARAYÜZ =================
-    fig = uifigure('Name', 'BFSK BER Deneyi', 'Position', [60 60 1250 760]);
+    fig = uifigure('Name', 'BFSK BER Deneyi', 'Position', [60 60 1250 800]);
     g = uigridlayout(fig, [1 2]);
     g.ColumnWidth = {300, '1x'};
 
     % ---------- sol: ayarlar ----------
-    L = uigridlayout(g, [10 1]);
-    L.RowHeight = {44, 40, 22, 28, 22, 28, 22, 44, 44, '1x'};
+    L = uigridlayout(g, [13 1]);
+    L.RowHeight = {44, 22, 22, 28, 22, 28, 22, 22, 50, 54, 44, 40, '1x'};
     L.Padding = [12 12 12 12];
 
     lb = uilabel(L, 'Text', 'BFSK BER deneyi: bit gönder, hataları say', ...
         'FontSize', 16, 'FontWeight', 'bold', 'WordWrap', 'on');
     lb.Layout.Row = 1;
     lb = uilabel(L, 'WordWrap', 'on', 'FontColor', [0.4 0.4 0.4], 'Text', ...
-        sprintf('bit 1 → %g Hz,  bit 0 → %g Hz,  Tb = %g s', P.f1, P.f2, P.Tb));
+        sprintf('bit 1 → %g Hz,   bit 0 → %g Hz', P.f1, P.f2));
     lb.Layout.Row = 2;
 
     lb = uilabel(L, 'Text', '1) Kaç bit gönderilsin?', 'FontWeight', 'bold'); lb.Layout.Row = 3;
@@ -57,12 +56,25 @@ function ber_gui
         'FontAngle', 'italic', 'FontColor', [0.4 0.4 0.4]);
     lb.Layout.Row = 7;
 
+    lb = uilabel(L, 'Text', '3) Sinyal ayarları', 'FontWeight', 'bold'); lb.Layout.Row = 8;
+    G2 = uigridlayout(L, [2 2]); G2.Padding = [0 0 0 0]; G2.Layout.Row = 9;
+    G2.RowHeight = {18, 26}; G2.RowSpacing = 2;
+    uilabel(G2, 'Text', 'Tb: bit süresi');
+    uilabel(G2, 'Text', 'fs: örnekleme');
+    tbEdit = uieditfield(G2, 'numeric', 'Value', 1, 'Limits', [0.01 10], ...
+        'ValueDisplayFormat', '%g s', 'ValueChangedFcn', @(~, ~) ayar_kontrol());
+    fsEdit = uieditfield(G2, 'numeric', 'Value', 100, 'Limits', [2*P.f1 + 1, 10000], ...
+        'RoundFractionalValues', 'on', 'ValueDisplayFormat', '%d Hz', ...
+        'ValueChangedFcn', @(~, ~) ayar_kontrol());
+    ayarBilgi = uilabel(L, 'Text', '', 'WordWrap', 'on', 'FontSize', 11);
+    ayarBilgi.Layout.Row = 10;
+
     btn = uibutton(L, 'Text', 'Gönder', 'FontSize', 15, 'FontWeight', 'bold', ...
         'ButtonPushedFcn', @gonder);
-    btn.Layout.Row = 8;
+    btn.Layout.Row = 11;
 
     durum = uilabel(L, 'Text', 'Ayarları seçip "Gönder"e bas.', 'WordWrap', 'on');
-    durum.Layout.Row = 9;
+    durum.Layout.Row = 12;
 
     yardim = uitextarea(L, 'Editable', 'off', 'Value', { ...
         'NASIL OKUNUR?', ...
@@ -74,10 +86,12 @@ function ber_gui
         '', ...
         'BER grafiği: çizgi teori, noktalar senin deneyin. Nokta çizgiye yakınsa simülasyon doğru. 0 hata çıkarsa aşağı üçgen konur: BER 1/N''den küçük, ölçmek için daha çok bit gönder.', ...
         '', ...
-        'Alıcı neden yanılıyor? Mavi tepe gönderilen 1''ler, turuncu tepe 0''lar. Siyah çizgi (0) eşik: sağı 1, solu 0 kabul edilir. Gürültü tepeleri genişletir; çizginin yanlış tarafına taşan bitler alıcının yanıldığı bitlerdir.', ...
+        'Alıcı neden yanılıyor? Alıcı her bit için bir sayı (d) hesaplar. Gürültü olmasa 1''ler tam +Eb''de, 0''lar tam -Eb''de olurdu; gürültü onları sağa sola dağıtır. Siyah çizgi eşik: sağı "1", solu "0" kararı. Mavi = doğru çözülen 1''ler, turuncu = doğru çözülen 0''lar, KIRMIZI = çizginin yanlış tarafına düşen, yani hatalı bitler.', ...
         '', ...
-        'Hatalar nerede? İlk 200 bit: yeşil doğru, kırmızı yanlış.'});
-    yardim.Layout.Row = 10;
+        'Hatalar nerede? İlk 200 bit: yeşil doğru, kırmızı yanlış.', ...
+        '', ...
+        'Tb ve fs: Tb''yi veya fs''yi değiştirince BER değişmez, çünkü önemli olan Eb/N0 oranıdır. İstisna: (f1 ± f2)·Tb tam sayı değilse iki ton birbirine karışır (ρ ≠ 0) ve BER teoriden farklı çıkabilir. Bu durumda kırmızı uyarı görünür.'});
+    yardim.Layout.Row = 13;
 
     % ---------- sağ: sonuçlar ----------
     R = uigridlayout(g, [4 2]);
@@ -104,10 +118,46 @@ function ber_gui
     axStrip.XTick = []; axStrip.YTick = [];
     title(axStrip, 'Hatalar nerede?');
 
+    ayar_kontrol();
+
     % ================= İŞLEM =================
+    function ayar_kontrol()
+        % Tb ve fs girilince: bir bitte kaç örnek var, tonlar ortogonal mi?
+        Tb = tbEdit.Value;  fs = fsEdit.Value;
+        Nbit = round(fs*Tb);
+        dalga1 = P.f1*Tb;  dalga2 = P.f2*Tb;          % bir bitte kaç dalga
+        ort = abs((P.f1-P.f2)*Tb - round((P.f1-P.f2)*Tb)) < 1e-9 && ...
+              abs((P.f1+P.f2)*Tb - round((P.f1+P.f2)*Tb)) < 1e-9;
+        if ort
+            ayarBilgi.FontColor = [0.15 0.5 0.2];
+            ayarBilgi.Text = sprintf(['✓ Bir bitte %d örnek, %g ve %g dalga. ' ...
+                'Tonlar ortogonal, teori geçerli.'], Nbit, dalga1, dalga2);
+        else
+            t  = (0:Nbit-1)/fs;                        % iki ton ne kadar benziyor?
+            c1 = cos(2*pi*P.f1*t);  c2 = cos(2*pi*P.f2*t);
+            rho = sum(c1.*c2) / sqrt(sum(c1.^2)*sum(c2.^2));   % 0 = hiç benzemiyor
+            ayarBilgi.FontColor = [0.8 0.2 0.1];
+            ayarBilgi.Text = sprintf(['⚠ (f1 ± f2)·Tb tam sayı değil: tonlar ortogonal ' ...
+                'değil (benzerlik ρ = %.2f). Teori eğrisi tam geçerli değil, ' ...
+                'BER ondan farklı çıkabilir. (%d örnek/bit)'], rho, Nbit);
+        end
+    end
+
     function gonder(~, ~)
         n   = nbEdit.Value;
         dBs = sort([dbEdit.Value]);
+        P.Tb = tbEdit.Value;
+        P.fs = fsEdit.Value;
+        Nbit = round(P.fs*P.Tb);
+        if Nbit < 2
+            durum.Text = 'fs·Tb çok küçük: bir bitte en az 2 örnek olmalı.';
+            return
+        end
+        if n*Nbit > 2e7
+            durum.Text = sprintf(['Çok büyük: %d bit × %d örnek/bit. Bit sayısını, ' ...
+                'Tb''yi veya fs''yi küçült (çarpım ≤ 2·10^7).'], n, Nbit);
+            return
+        end
         btn.Enable = 'off'; durum.Text = 'Gönderiliyor...'; drawnow;
 
         sonuc = struct('etiket', {}, 'bits', {}, 'bits_hat', {}, 'd', {}, 'nErr', {}, 'Eb', {});
@@ -155,6 +205,8 @@ function ber_gui
             xline(axBer, dBs(j), ':', 'Color', [0.5 0.5 0.5], 'HandleVisibility', 'off');
         end
         legend(axBer, 'Location', 'southwest');
+        title(axBer, {'BER eğrisi: çizgi = teori, nokta = deney', ...
+            sprintf('T_b = %g s,  f_s = %g Hz', P.Tb, P.fs)});
 
         tbl.Data = satir;
         dd.Items = {sonuc.etiket};
@@ -171,21 +223,31 @@ function ber_gui
         Rr = sonuc(idx);
 
         % ---- karar değişkeni histogramı ----
+        % Her bitin d değeri. Üç grup:
+        %   mavi    = 1 gönderildi, d > 0  -> doğru "1"
+        %   turuncu = 0 gönderildi, d < 0  -> doğru "0"
+        %   kırmızı = d eşiğin yanlış tarafında -> HATA
         cla(axD); legend(axD, 'off'); hold(axD, 'on'); grid(axD, 'on');
         lim   = max(abs(Rr.d)) * 1.05;
-        edges = linspace(-lim, lim, 41);
-        histogram(axD, Rr.d(Rr.bits == 1), edges, 'FaceColor', [0 0.45 0.74], ...
-            'FaceAlpha', 0.6, 'DisplayName', 'gönderilen 1');
-        histogram(axD, Rr.d(Rr.bits == 0), edges, 'FaceColor', [0.85 0.33 0.10], ...
-            'FaceAlpha', 0.6, 'DisplayName', 'gönderilen 0');
+        edges = linspace(-lim, lim, 41);      % 0 tam bir kutu sınırı: kutular eşiği bölmez
+        hata1 = Rr.bits == 1 & Rr.d < 0;      % 1 gönderildi, 0 sanıldı
+        hata0 = Rr.bits == 0 & Rr.d > 0;      % 0 gönderildi, 1 sanıldı
+        histogram(axD, Rr.d(Rr.bits == 1 & ~hata1), edges, 'FaceColor', [0 0.45 0.74], ...
+            'FaceAlpha', 0.7, 'DisplayName', '1 gönderildi, doğru çözüldü');
+        histogram(axD, Rr.d(Rr.bits == 0 & ~hata0), edges, 'FaceColor', [0.93 0.60 0.20], ...
+            'FaceAlpha', 0.7, 'DisplayName', '0 gönderildi, doğru çözüldü');
+        histogram(axD, Rr.d(hata1 | hata0), edges, 'FaceColor', [0.85 0.10 0.10], ...
+            'FaceAlpha', 0.9, 'DisplayName', 'HATA: yanlış tarafa düştü');
         xline(axD, 0, 'k-', 'LineWidth', 2.5, 'DisplayName', 'eşik (0)');
-        xline(axD,  Rr.Eb, 'k:', '+E_b', 'HandleVisibility', 'off');
-        xline(axD, -Rr.Eb, 'k:', '-E_b', 'HandleVisibility', 'off');
-        e10 = sum(Rr.bits == 1 & Rr.d < 0);    % 1 gönderildi, 0 sanıldı
-        e01 = sum(Rr.bits == 0 & Rr.d > 0);    % 0 gönderildi, 1 sanıldı
-        title(axD, sprintf('%s: eşiğin yanlış tarafına düşen %d bit (1→0: %d, 0→1: %d)', ...
-            Rr.etiket, e10 + e01, e10, e01));
-        xlabel(axD, 'd = z_1 - z_2   (sağ: 1 kararı, sol: 0 kararı)');
+        xline(axD,  Rr.Eb, 'k:', '+E_b (1''in yeri)', 'HandleVisibility', 'off', ...
+            'LabelOrientation', 'horizontal', 'LabelVerticalAlignment', 'top');
+        xline(axD, -Rr.Eb, 'k:', '-E_b (0''ın yeri)', 'HandleVisibility', 'off', ...
+            'LabelOrientation', 'horizontal', 'LabelVerticalAlignment', 'top', ...
+            'LabelHorizontalAlignment', 'left');
+        title(axD, {sprintf('Alıcı neden yanılıyor? (%s)', Rr.etiket), ...
+            sprintf('%d bit yanlış tarafta:  1→0: %d,  0→1: %d', ...
+            sum(hata1) + sum(hata0), sum(hata1), sum(hata0))});
+        xlabel(axD, 'd = z_1 - z_2      (sol: "0" kararı  |  sağ: "1" kararı)');
         ylabel(axD, 'bit sayısı');
         legend(axD, 'Location', 'northwest');
 
@@ -220,7 +282,7 @@ end
 function [bits, bits_hat, d, Eb] = bfsk_deney(n, EbN0_dB, P)
 % bitler -> BFSK verici -> AWGN kanal -> korelatör -> karar
 % Her sütun bir bit: döngü yerine matrisle, aynı işlem.
-    t_bit = (0:P.fs*P.Tb-1) / P.fs;            % bir bitin zaman ekseni
+    t_bit = (0:round(P.fs*P.Tb)-1) / P.fs;     % bir bitin zaman ekseni (fs*Tb örnek)
     c1 = cos(2*pi*P.f1*t_bit).';               % bit 1 tonu (sütun)
     c2 = cos(2*pi*P.f2*t_bit).';               % bit 0 tonu
 
