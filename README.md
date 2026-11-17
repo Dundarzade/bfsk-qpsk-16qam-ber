@@ -4,21 +4,25 @@ EE451 Communications term project (IYTE, Fall 2026).
 
 We implement BFSK, QPSK and 16-QAM modulators/demodulators in MATLAB, simulate bit error rate (BER) over an AWGN channel, compare it with theoretical curves, and present everything in a MATLAB GUI. A wired modem between two ESP32 boards (DAC → wire → ADC) is a hardware plan; this repository does not yet establish measured hardware BER.
 
-## 16-QAM deneyi
+## 16-QAM experiment
 
-Proje klasörünü MATLAB'de açıp `start_qam16` çalıştır. BFSK arayüzüyle aynı düzende üç gürültü seviyesini, I/Q kararlarını ve bit hatalarını karşılaştırır. Hazır modülasyon fonksiyonlarına ihtiyaç duymaz.
+Open [`teslim/qam16_standalone.m`](teslim/qam16_standalone.m) in MATLAB and click **Run** for the self-contained English experiment. You can also use the commands below from the repository root. It compares three noise levels, I/Q decisions and bit errors using the same layout as the BFSK GUI. No built-in modulation functions are needed. The modular launcher `start_qam16` remains available, and `qam16_tek_dosya.m` is retained as an English-text compatibility export.
 
 ```matlab
+cd teslim
+qam16_standalone   % Self-contained, single-file GUI
+cd ..              % Return to the repository root
+% Alternatively, open the modular project GUI:
 start_qam16
-% Sayısal kontroller ve sonuçları yeniden üretmek için:
+% To run numerical checks and reproduce the results:
 addpath('src')
 test_qam16
 run_qam16_analysis
 ```
 
-[16-QAM açıklaması](docs/qam16/README.md) · [Sunum ve hoca soruları](docs/qam16/sunum_notlari.md) · [Doğrulanmış sonuçlar](results/qam16/README.md)
+[16-QAM explanation](docs/qam16/README.md) · [Presentation and instructor questions](docs/qam16/sunum_notlari.md) · [Validated results](results/qam16/README.md) · [English PDF summary](teslim/16QAM_Summary_and_Figures.pdf)
 
-![16-QAM deney arayüzü](results/qam16/qam16_gui.png)
+![16-QAM experiment GUI](results/qam16/qam16_gui.png)
 
 ## How it works
 
@@ -91,5 +95,5 @@ run_ber_awgn       % writes ../results/ber_awgn.png, constellations.png, ber_awg
 ## Team
 
 - Halil Yilmaz
-- Emir Dündar ([@Dundarzade](https://github.com/Dundarzade)) — 16-QAM deney arayüzü ve BER analizi
+- Emir Dündar ([@Dundarzade](https://github.com/Dundarzade)) — 16-QAM experiment GUI and BER analysis
 - Atlas Ferhan
