@@ -16,9 +16,9 @@ function test_qam16_gui
     callback=btn.ButtonPushedFcn;
     assert(strcmp(btn.Enable,'on') && size(tableView.Data,1)==3);
     count.Value=42; callback(btn,[]);
-    assert(startsWith(status.Text,'Hata:') && strcmp(btn.Enable,'on'));
+    assert(startsWith(status.Text,'Error:') && strcmp(btn.Enable,'on'));
     count.Value=40000; fc.Value=4.3; callback(btn,[]);
-    assert(startsWith(status.Text,'Hata:') && strcmp(btn.Enable,'on'));
+    assert(startsWith(status.Text,'Error:') && strcmp(btn.Enable,'on'));
     fc.Value=4; count.Value=400;
     for j=1:3
         edit=findall(f,'Tag',sprintf('QAM16DB%d',j)); edit.Value=30;
@@ -27,7 +27,7 @@ function test_qam16_gui
     data=getappdata(f,'QAM16Results');
     assert(numel(data)==3 && all([data.nErr]==0));
     assert(all([data.zeroErrorUpper95]>0));
-    assert(contains(tableView.Data{1,8},'üst sınır'));
+    assert(contains(tableView.Data{1,8},'upper bound'));
     dd.Value=3; selectionCallback=dd.ValueChangedFcn; selectionCallback(dd,[]);
     assert(strcmp(btn.Enable,'on'));
     fprintf('PASS: real GUI callbacks, invalid bit/carrier recovery, zero-error bound,\n');

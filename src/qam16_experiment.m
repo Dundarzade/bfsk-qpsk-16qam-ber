@@ -15,15 +15,15 @@ function out = qam16_experiment(nBits, EbN0dB, opts)
     validateattributes(nBits, {'numeric'}, {'real','scalar','finite', ...
         'integer','>=',4,'<=',4e6}, mfilename, 'nBits');
     if mod(nBits,4) ~= 0
-        error('qam16_experiment:BitCount', 'Bit sayısı 4''ün katı olmalı.');
+        error('qam16_experiment:BitCount', 'Bit count must be a multiple of 4.');
     end
     validateattributes(EbN0dB, {'numeric'}, {'real','scalar','nonnan'}, ...
         mfilename, 'EbN0dB');
     if EbN0dB == -Inf
-        error('qam16_experiment:EbN0', 'Eb/N0 sonlu bir dB değeri veya +Inf olmalı.');
+        error('qam16_experiment:EbN0', 'Eb/N0 must be a finite dB value or +Inf.');
     end
     if ~isstruct(opts) || ~isscalar(opts)
-        error('qam16_experiment:Options', 'opts tek bir struct olmalı.');
+        error('qam16_experiment:Options', 'opts must be a scalar struct.');
     end
     names = {'Ts','Fs','Fc','Seed'};
     defaults = {1,100,4,16};
@@ -40,18 +40,18 @@ function out = qam16_experiment(nBits, EbN0dB, opts)
     L=round(Fs*Ts);
     if L<8 || L>1e5 || abs(Fs*Ts-L)>1e-8*max(1,L)
         error('qam16_experiment:Sampling', ...
-            'Fs*Ts, 8 ile 100000 arasında bir tam sayı olmalı.');
+            'Fs*Ts must be an integer from 8 to 100000.');
     end
     if Fc>=Fs/2 || abs(Fc*Ts-round(Fc*Ts))>1e-9
         error('qam16_experiment:Carrier', ...
-            'Fc < Fs/2 ve Fc*Ts tam sayı olmalı (dik I/Q taşıyıcılar).');
+            'Fc must be less than Fs/2 and Fc*Ts must be an integer (orthogonal I/Q carriers).');
     end
     t=(0:L-1)'/Fs;
     cI=cos(2*pi*Fc*t); cQ=-sin(2*pi*Fc*t);
     gram=[cI cQ]'*[cI cQ]/L;
     if max(abs(gram(:)-reshape(eye(2)/2,[],1)))>1e-9
         error('qam16_experiment:Orthogonality', ...
-            'Örneklenmiş taşıyıcıların dikliği sağlanamadı.');
+            'The sampled carriers are not orthogonal.');
     end
     bitStream=RandStream('mt19937ar','Seed',double(opts.Seed));
     noiseStream=RandStream('mt19937ar','Seed',double(opts.Seed)+1);
@@ -60,7 +60,7 @@ function out = qam16_experiment(nBits, EbN0dB, opts)
     Es=Ts/2; Eb=Es/4; N0=Eb/10^(EbN0dB/10);
     sigma=sqrt(N0*Fs/2);
     if ~isfinite(sigma)
-        error('qam16_experiment:NoiseRange', 'Eb/N0 sayısal aralığın dışında.');
+        error('qam16_experiment:NoiseRange', 'Eb/N0 is outside the numeric range.');
     end
     rx=complex(zeros(nSym,1));
     blockSymbols=max(1,floor(1e6/L));

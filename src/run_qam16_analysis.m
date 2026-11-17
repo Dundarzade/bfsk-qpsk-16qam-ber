@@ -7,7 +7,7 @@ function summary = run_qam16_analysis(nBits)
     validateattributes(nBits,{'numeric'},{'real','scalar','finite', ...
         'integer','>=',4,'<=',4e6},mfilename,'nBits');
     if mod(nBits,4)~=0
-        error('run_qam16_analysis:BitCount','Bit sayısı 4''ün katı olmalı.');
+        error('run_qam16_analysis:BitCount','The bit count must be a multiple of 4.');
     end
     root=fileparts(fileparts(mfilename('fullpath')));
     outDir=fullfile(root,'results','qam16');
@@ -49,33 +49,33 @@ function summary = run_qam16_analysis(nBits)
     cleaner=onCleanup(@()closeIfValid(f));
     dense=linspace(-2,16,400);
     semilogy(dense,ber_theory('qam16',dense),'-','LineWidth',1.8, ...
-        'DisplayName','16-QAM: tam Gray BER'); hold on; grid on;
+        'DisplayName','16-QAM: exact Gray BER'); hold on; grid on;
     semilogy(dense,ber_theory('qpsk',dense),'--','LineWidth',1.2, ...
-        'DisplayName','QPSK: teori');
+        'DisplayName','QPSK: theory');
     positive=measured>0;
     enough=errors>=100;
     errorbar(db(enough),measured(enough),1.96*sem(enough),1.96*sem(enough), ...
         'o','Color',[0.85 0.33 0.10],'LineWidth',1.2, ...
-        'DisplayName','Gecis bandi: yaklasik %95 aralik (en az 100 hata)');
+        'DisplayName','Passband: approximate 95% interval (at least 100 errors)');
     few=positive & ~enough;
     if any(few)
         plot(db(few),measured(few),'s','MarkerSize',8,'LineWidth',1.5, ...
-            'Color',[0.85 0.33 0.10],'DisplayName','Az hata: hassasiyet sinirli');
+            'Color',[0.85 0.33 0.10],'DisplayName','Few errors: limited precision');
     end
     plot(db,baseband,'x','Color',[0.47 0.67 0.19],'LineWidth',1.5, ...
-        'DisplayName','16-QAM: kompleks temel bant');
+        'DisplayName','16-QAM: complex baseband');
     if any(~positive)
         plot(db(~positive),zeroUpper(~positive),'v','MarkerSize',9, ...
-            'DisplayName','0 hata: temkinli %95 BER ust siniri');
+            'DisplayName','0 errors: conservative 95% BER upper bound');
     end
     for j=1:n
         text(db(j),max(measured(j),zeroUpper(j))*1.5, ...
-            sprintf('%d hata',errors(j)),'FontSize',9,'HorizontalAlignment','center');
+            sprintf('%d errors',errors(j)),'FontSize',9,'HorizontalAlignment','center');
     end
     yline(1e-3,':k','BER = 10^{-3}','HandleVisibility','off');
-    xlabel('E_b/N_0 (dB)'); ylabel('Bit hata orani (BER)'); ylim([1e-7 1]); xlim([-2 16]);
-    title({'16-QAM: teori, gercek tasiyicili deney ve temel bant', ...
-        sprintf('Her noktada %d bit; T_s=1 s, F_s=100 Hz, f_c=4 Hz; ideal senkron',nBits)});
+    xlabel('E_b/N_0 (dB)'); ylabel('Bit error rate (BER)'); ylim([1e-7 1]); xlim([-2 16]);
+    title({'16-QAM: theory, real-carrier experiment and baseband', ...
+        sprintf('%d bits per point; T_s=1 s, F_s=100 Hz, f_c=4 Hz; ideal synchronization',nBits)});
     legend('Location','southwest');
     exportgraphics(f,fullfile(outDir,'qam16_ber.png'),'Resolution',180);
     clear cleaner
@@ -101,7 +101,7 @@ function summary = run_qam16_analysis(nBits)
         xlabel('I'); ylabel('Q'); xlim([-1.8 1.8]); ylim([-1.8 1.8]);
         title(sprintf('%g dB | BER=%.3g',r.EbN0dB,r.BER));
     end
-    sgtitle('Alinan semboller: mavi dogru, kirmizi yanlis; daireler ideal noktalar');
+    sgtitle('Received symbols: blue correct, red incorrect; circles mark ideal points');
     exportgraphics(f,fullfile(outDir,'qam16_constellations.png'),'Resolution',180);
     clear cleaner
 
@@ -112,14 +112,14 @@ function summary = run_qam16_analysis(nBits)
     nexttile; stairs((0:nShow)*p.Ts,[real(r.txSymbols(1:nShow));real(r.txSymbols(nShow))], ...
         'LineWidth',1.5); hold on;
     stairs((0:nShow)*p.Ts,[imag(r.txSymbols(1:nShow));imag(r.txSymbols(nShow))],'LineWidth',1.5);
-    legend('I','Q'); grid on; ylabel('seviye'); title(sprintf('%d sembol: I/Q seviyeleri',nShow));
+    legend('I','Q'); grid on; ylabel('Level'); title(sprintf('%d symbols: I/Q levels',nShow));
     nexttile; plot(r.wave.t(keep),r.wave.s(keep)); grid on; ylabel('s(t)');
-    title('Verici: s(t) = I cos(2 pi f_c t) - Q sin(2 pi f_c t)');
-    nexttile; plot(r.wave.t(keep),r.wave.r(keep)); grid on; ylabel('r(t)'); xlabel('Zaman (s)');
-    title('AWGN kanal cikisi, E_b/N_0 = 6 dB');
+    title('Transmitter: s(t) = I cos(2 pi f_c t) - Q sin(2 pi f_c t)');
+    nexttile; plot(r.wave.t(keep),r.wave.r(keep)); grid on; ylabel('r(t)'); xlabel('Time (s)');
+    title('AWGN channel output, E_b/N_0 = 6 dB');
     exportgraphics(f,fullfile(outDir,'qam16_waveform.png'),'Resolution',180);
     clear cleaner
-    fprintf('BER=1e-3: 16-QAM %.4f dB, QPSK %.4f dB; fark %.4f dB.\n', ...
+    fprintf('BER=1e-3: 16-QAM %.4f dB, QPSK %.4f dB; difference %.4f dB.\n', ...
         targetQAM,targetQPSK,targetQAM-targetQPSK);
     fprintf('Results: %s\n',outDir);
 end
