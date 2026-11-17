@@ -1,8 +1,8 @@
-# 16-QAM doğrulama sonuçları
+# 16-QAM validation results
 
-17 Kasım 2026'da MATLAB R2026b Prerelease Update 1 ile üretildi. Kod kaynağı `src/run_qam16_analysis.m`; her noktada 2 000 000 bit, Ts=1 s, Fs=100 Hz, fc=4 Hz, seed=451. Bunlar ideal senkronlu AWGN simülasyonlarıdır; fiziksel donanım ölçümü değildir.
+Generated on 17 November 2026 with MATLAB R2026b Prerelease Update 1. Source: `src/run_qam16_analysis.m`; 2,000,000 bits per point, Ts=1 s, Fs=100 Hz, fc=4 Hz, seed=451. These are ideally synchronised AWGN simulations, not physical hardware measurements.
 
-| Eb/N0 | Hatalı bit | Ölçülen BER | Tam teorik BER |
+| Eb/N0 | Incorrect bits | Measured BER | Exact theoretical BER |
 |---|---:|---:|---:|
 | 0 dB | 281654 | 0.140827 | 0.140982 |
 | 4 dB | 116746 | 0.058373 | 0.058624 |
@@ -10,25 +10,26 @@
 | 12 dB | 279 | 0.0001395 | 0.0001387 |
 | 14 dB | 3 | 0.0000015 | 0.0000028 |
 
-14 dB'de yalnız üç hata sayıldı; bu noktanın hassasiyeti sınırlıdır. Grafikte yaklaşık %95 hata çubukları yalnız en az 100 hata bulunan noktalarda gösterilir; aynı sembolün bitleri arasındaki bağımlılık sembol bazında standart hata hesabıyla korunur. Noktalar ortak standart gürültü örnekleri kullandığı için birbirinden bağımsız tekrarlar değildir.
+Only three errors were counted at 14 dB, so the precision of that point is limited. Approximate 95% error bars are shown only for points with at least 100 errors. The standard error is calculated per symbol, preserving the dependence between bits in the same symbol. Since the points use common standard noise samples, they are not independent repetitions.
 
-BER=10⁻³ için tam teorinin sayısal çözümü: **16-QAM 10.5224 dB**, **QPSK 6.7895 dB**, fark **3.7329 dB**. Bu hedefe ait teorik sonuçtur; her BER için sabit bir güç farkı değildir.
+Numerical inversion of the exact theory for BER=10⁻³ gives **16-QAM 10.5224 dB**, **QPSK 6.7895 dB**, a difference of **3.7329 dB**. This is a theoretical result for that target, not a constant power gap at every BER.
 
-![BER karşılaştırması](qam16_ber.png)
+![BER comparison](qam16_ber.png)
 
-![Alınan semboller](qam16_constellations.png)
+![Received symbols](qam16_constellations.png)
 
-![Gerçek taşıyıcı dalgası](qam16_waveform.png)
+![Real carrier waveform](qam16_waveform.png)
 
-## Dosyalar ve tekrar üretme
+## Files and reproduction
 
-- `qam16_ber.csv`: sekiz Eb/N0 noktasının tüm sayaçları, temel bant karşılaştırması ve standart hatalar.
-- `qam16_results.mat`: sonuç tablosu, ayarlar ve teorik hedefler.
-- `qam16_gui.png`: üç deney çalıştıktan sonraki arayüz görüntüsü.
-- `qam16_ber.png`, `qam16_constellations.png`, `qam16_waveform.png`: yukarıdaki grafikler.
+- `qam16_ber.csv`: all counts, baseband comparisons and standard errors for the eight Eb/N0 points.
+- `qam16_results.mat`: result table, settings and theoretical targets.
+- `qam16_gui.png`: GUI screenshot after all three experiments have run.
+- `qam16_ber.png`, `qam16_constellations.png`, `qam16_waveform.png`: the plots above.
+- [English PDF summary and figures](../../teslim/16QAM_Summary_and_Figures.pdf).
 
 ```matlab
-% Proje kökünde:
+% From the project root:
 addpath('src','gui')
 test_mod_demod
 test_qam16
@@ -38,4 +39,4 @@ f = qam16_gui(struct('Visible','off','AutoRun',true, ...
 close(f)
 ```
 
-Kontroller: 16 etiketin tamamı, Gray komşuluğu, Es=1 normalizasyonu, gürültüsüz gerçek dalgada sıfır hata, teorik BER, örnek ve korelatör gürültü varyansı, Fs/Ts değişiminde BER uyumu ve geçersiz ayarların reddi. Arayüzün üç deneyi çalıştırması ve sonuç yapısı gerçek MATLAB'de doğrulandı.
+Checks cover all 16 labels, Gray adjacency, Es=1 normalisation, zero errors for a noiseless real waveform, theoretical BER, sample and correlator noise variance, BER agreement when Fs/Ts changes, and rejection of invalid settings. The GUI's three experiments and result structure were validated in real MATLAB. These statements describe the recorded validation run above.
